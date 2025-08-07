@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Front-End Development Course</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .course-banner {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 450px;
+      z-index: 9999;
+    }
+
+    .nav-item:hover .course-banner {
+      display: block;
+    }
+
+    .course-item {
+      transition: transform 0.3s ease;
+    }
+
+    .course-item:hover {
+      transform: translateX(10px);
+    }
+
+    @media (max-width: 768px) {
+      .course-banner {
+        width: 95%;
+        left: 2.5%;
+        transform: none;
+      }
+
+      .navbar-collapse {
+        padding-bottom: 20px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .navbar-brand img {
+        width: 180px !important;
+        height: auto !important;
+      }
+    }
+
+    .fade-in-image {
+      opacity: 0;
+      animation: fadeIn 1s ease-in forwards;
+      animation-delay: 2s;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .float-image {
+      animation: floatUpDown 3s ease-in-out infinite;
+    }
+
+    @keyframes floatUpDown {
+      0% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-30px);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    .hero-section {
+      background: linear-gradient(to right,
+          rgba(245, 230, 90, 0.3) 0%,
+          rgba(82, 213, 125, 0.2) 25%,
+          rgba(79, 107, 243, 0.2) 50%,
+          rgba(236, 124, 165, 0.3) 75%,
+          rgba(236, 124, 165, 0.3) 100%);
+      min-height: 100vh;
+      padding-top: 80px !important;
+    }
+
+    .hero-title {
+      font-size: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .hero-title {
+        font-size: 3rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-section {
+        padding-top: 60px !important;
+        text-align: center;
+      }
+
+      .hero-title {
+        font-size: 2rem !important;
+      }
+
+      #tex-div {
+        margin-left: 0 !important;
+        padding: 0 15px;
+      }
+
+      .info-card {
+        padding: 30px 20px !important;
+      }
+    }
+
+    @media screen and (max-width: 992px) {
+      #img-div {
+        display: none;
+      }
+    }
+
+    .info-card {
+      color: white;
+      border-radius: 10px;
+      padding: 50px 40px;
+      margin-bottom: 40px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-red {
+      background-color: #f60000;
+    }
+
+    .card-blue {
+      background-color: #007bff;
+    }
+
+    .form-container {
+      background-color: #edf4ff;
+      border-radius: 10px;
+      padding: 30px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      height: 100%;
+    }
+
+    .form-check-label {
+      margin-left: 5px;
+    }
+
+    #learn-wrapper {
+      background-color: #f9f9f9;
+      padding: 60px 0;
+    }
+
+    #learn-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    #learn-title {
+      font-weight: 700;
+      text-shadow: 2px 2px 2px #aaa;
+      border-bottom: 3px solid red;
+      display: inline-block;
+      padding-bottom: 5px;
+      margin-bottom: 40px;
+    }
+
+    .learn-item {
+      margin-bottom: 20px;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .learn-icon {
+      color: red;
+      font-size: 1.2rem;
+      margin-right: 10px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 768px) {
+      .learn-col {
+        margin-bottom: 30px;
+      }
+
+      .learn-item {
+        font-size: 0.95rem;
+      }
+    }
+
+    .second-hero {
+      background: linear-gradient(to right,
+          rgba(245, 230, 90, 0.3) 0%,
+          rgba(82, 213, 125, 0.2) 25%,
+          rgba(79, 107, 243, 0.2) 50%,
+          rgba(236, 124, 165, 0.3) 75%,
+          rgba(236, 124, 165, 0.3) 100%);
+      padding: 80px 0;
+    }
+
+    @media (max-width: 768px) {
+      .second-hero {
+        padding: 50px 0;
+      }
+
+      .second-hero h1 {
+        font-size: 1.8rem !important;
+        text-align: center;
+      }
+    }
+
+    #blue-section {
+      background: linear-gradient(to right,
+          rgb(13, 13, 89) 0%,
+          rgb(82, 82, 145) 25%,
+          rgb(56, 56, 108) 50%,
+          rgb(41, 41, 78),
+          rgb(53, 53, 94));
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    @media (max-width: 768px) {
+      #blue-section {
+        width: 95% !important;
+        margin: 0 auto;
+      }
+    }
+
+    .custom-box {
+      height: 70px;
+      transition: all 0.4s ease;
+      box-shadow: 0 0 10px black;
+      border-radius: 12px;
+      overflow: hidden;
+      background-color: white;
+    }
+
+    .custom-box.expanded {
+      height: auto;
+      min-height: 150px;
+    }
+
+    .main-text {
+      color: rgb(66, 65, 65);
+      transition: color 0.4s;
+    }
+
+    .main-text.red {
+      color: red;
+    }
+
+    .extra-content {
+      display: none;
+      margin-top: 10px;
+    }
+
+    .custom-box.expanded .extra-content {
+      display: block;
+    }
+
+    .icon-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      padding: 0;
+      font-size: 18px;
+      text-align: center;
+      line-height: 1;
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2rem !important;
+      }
+
+      .second-hero h1 {
+        font-size: 1.5rem !important;
+        text-align: center;
+      }
+
+      .container .row [class*='col-'] {
+        margin-bottom: 20px;
+      }
+
+      .custom-box {
+        padding: 15px !important;
+      }
+
+      .main-text {
+        font-size: 0.95rem;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .course-content-columns {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .course-content-columns .col-3 {
+        width: 100%;
+        max-width: 300px;
+        text-align: center;
+        margin-bottom: 15px;
+      }
+
+      .footer-section .col-md-4 {
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      .footer-section hr {
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg fixed-top bg-white border-bottom">
+    <div class="container position-relative">
+      <a class="navbar-brand" href="#">
+        <img src="brand.png" alt="Logo" style="width: 230px; height: 70px;">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+        aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav ms-auto text-center">
+          <!-- Courses nav-item with hover banner -->
+          <li class="nav-item mx-2 position-relative">
+            <a class="nav-link" href="#">Courses</a>
+            <div class="course-banner bg-white p-4 rounded shadow">
+              <!-- Course 1 -->
+              <div class="d-flex align-items-start gap-3 mb-3 course-item">
+                <a href="FED.html"
+                  class="d-flex align-items-center justify-content-center bg-danger text-white rounded-circle"
+                  style="width: 45px; height: 45px;">
+                  <i class="fas fa-code"></i>
+                </a>
+                <div class="text-start">
+                  <h6 class="text-uppercase fw-bold mb-1">Front-End Development</h6>
+                  <p class="mb-0 small text-muted">Harness the power of web development with coding</p>
+                </div>
+              </div>
+
+              <!-- Course 2 -->
+              <div class="d-flex align-items-start gap-3 mb-3 course-item">
+                <a href="gdc.html"
+                  class="d-flex align-items-center justify-content-center bg-primary text-white rounded-circle"
+                  style="width: 45px; height: 45px;">
+                  <i class="fas fa-paint-brush"></i>
+                </a>
+                <div class="text-start">
+                  <h6 class="text-uppercase fw-bold mb-1">Graphic Design Course</h6>
+                  <p class="mb-0 small text-muted">Turn your inner creativity into a business</p>
+                </div>
+              </div>
+
+              <!-- Course 3 -->
+              <div class="d-flex align-items-start gap-3 mb-3 course-item">
+                <a href="sm.html"
+                  class="d-flex align-items-center justify-content-center bg-warning text-white rounded-circle"
+                  style="width: 45px; height: 45px;">
+                  <i class="fas fa-bullhorn"></i>
+                </a>
+                <div class="text-start">
+                  <h6 class="text-uppercase fw-bold mb-1">Social Media Marketing</h6>
+                  <p class="mb-0 small text-muted">Learn to market business with smm</p>
+                </div>
+              </div>
+
+              <!-- Course 4 -->
+              <div class="d-flex align-items-start gap-3 course-item">
+                <a href="seo.html"
+                  class="d-flex align-items-center justify-content-center bg-info text-white rounded-circle"
+                  style="width: 45px; height: 45px;">
+                  <i class="fas fa-chart-line"></i>
+                </a>
+                <div class="text-start">
+                  <h6 class="text-uppercase fw-bold mb-1">Search Engine Optimization</h6>
+                  <p class="mb-0 small text-muted">The Key to Opening Doors of opportunities</p>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- Other nav links -->
+          <li class="nav-item mx-2"><a class="nav-link" href="#">Why Choose Us?</a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href="#">About Us</a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href="#">Course Fees</a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href="#">Internships</a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href="#">Blogs</a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href="#">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <section class="hero-section d-flex align-items-center">
+    <div class="container py-5">
+      <div class="row align-items-center">
+        <div class="col-lg-6 text-center text-lg-start" id="tex-div">
+          <h2 class="hero-title fw-bold">Front-End Web<br>Development<br>Course</h2>
+
+          <h5 class="mt-4 text-secondary">Get started as a front-end web developer using HTML, CSS,<br>JavaScript,
+            jQuery, and Bootstrap!</h5>
+          <div class="container mt-5">
+            <div class="d-flex align-items-center justify-content-center justify-content-lg-start">
+              <i class="fab fa-whatsapp fa-2x text-success me-2 fs-3"></i>
+              <span class="fs-4 fw-bold">+92 300 1234567</span>
+            </div>
+            <div class="d-flex align-items-center justify-content-center justify-content-lg-start mt-2">
+              <i class="fab fa-whatsapp fa-2x text-success me-2 fs-3"></i>
+              <span class="fs-4 fw-bold">+92 300 1234567</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 mt-4 mt-lg-0 text-center fade-in-image" id="img-div">
+          <img src="h1.png" alt="Hero Image" class="img-fluid" style="max-height: 400px;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container py-5">
+    <div class="row justify-content-center align-items-start g-4">
+      <div class="col-lg-5 col-md-10">
+        <div class="info-card card-red d-flex align-items-center">
+          <i class="bi bi-person-video3 me-3" style="font-size: 70px;"></i>
+          <div>
+            <h2 class="fw-bold">Methods of Learning</h2>
+            <p class="mb-0 fs-5">Classroom | Online</p>
+          </div>
+        </div>
+
+        <div class="info-card card-blue d-flex align-items-center">
+          <i class="bi bi-calendar-event me-3" style="font-size: 70px;"></i>
+          <div>
+            <h2 class="fw-bold">Course Duration</h2>
+            <p class="mb-0 fs-5">8 Weeks</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Enrolment Form -->
+      <div class="col-lg-5 col-md-10">
+        <div class="form-container">
+          <h4 class="text-center fw-bold mb-4">Enrolment Form</h4>
+          <form>
+            <div class="mb-3">
+              <label class="form-label">Full Name <span class="text-danger">(Required)</span></label>
+              <input type="text" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Email <span class="text-danger">(Required)</span></label>
+              <input type="email" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Contact No. <span class="text-danger">(Required)</span></label>
+              <input type="text" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Preferred Learning Method <span
+                  class="text-danger">(Required)</span></label><br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="method" id="classroom" value="classroom" required>
+                <label class="form-check-label" for="classroom">Classroom</label>
+              </div>
+              <br>
+              <div class="form-check form-check-inline mt-2">
+                <input class="form-check-input" type="radio" name="method" id="online" value="online" required>
+                <label class="form-check-label" for="online">Online</label>
+              </div>
+            </div>
+
+            <div class="d-grid">
+              <button type="submit" class="btn btn-danger mt-5">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- learning scetion -->
+  <div id="learn-wrapper" class="container-fluid" style="background-color: white;">
+    <div id="learn-content">
+      <h1 id="learn-title" class="text-center text-md-start">What you'll learn</h1>
+      <div class="row">
+        <div class="col-md-6 learn-col">
+          <div class="learn-item"><span class="learn-icon">✔</span>Build well-structured web pages with HTML from basics
+            to advanced layouts.</div>
+          <div class="learn-item"><span class="learn-icon">✔</span>Implement modern CSS techniques including Flexbox and
+            CSS Grid for styling.</div>
+          <div class="learn-item"><span class="learn-icon">✔</span>Program websites with JavaScript for dynamic
+            interactivity.</div>
+          <div class="learn-item"><span class="learn-icon">✔</span>Utilise Bootstrap for quick and efficient responsive
+            design creation.</div>
+          <div class="learn-item"><span class="learn-icon">✔</span>Simplify JavaScript coding with JQuery for enhanced
+            functionality. <strong>(Bonus)</strong></div>
+          <div class="learn-item"><span class="learn-icon">✔</span>Learn Ajax for dynamic content updating without page
+            reloads. <strong>(Bonus)</strong></div>
+        </div>
+        <div class="col-md-6 learn-col">
+          <div class="learn-item"><span class="learn-icon">✔</span>Master responsive web design for compatibility across
+            all devices.</div>
+          <div class="learn-item"><span class="learn-icon">✔</span>Develop proficiency in web development best practices
+            and professional tools.</div>
+          <div class="learn-item"><span class="learn-icon">✔</span>Understand fundamental web design principles
+            including colour theory and layout.</div>
+          <div class="learn-item"><span class="learn-icon">✔</span>Plan, manage, and execute web development projects
+            effectively.</div>
+          <div class="learn-item"><span class="learn-icon">✔</span>Enhance website accessibility and user experience
+            with semantic HTML.</div>
+          <div class="learn-item"><span class="learn-icon">✔</span>Explore advanced CSS features like animations and
+            transitions.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section class="container-fluid second-hero">
+    <div class="col-12 justify-content-center align-items-center d-flex">
+      <h1 class="fw-bolder mt-0 text-center px-3">Front-End Web Development Course Content</h1>
+    </div>
+    <div class="row">
+      <div class="col-12 justify-content-center align-items-center d-flex">
+        <div style="background-color: red; width: 250px; height: 2px ;"></div>
+      </div>
+    </div>
+    <div class="row justify-content-center align-items-center mt-5 course-content-columns">
+      <div class="col-3 text-start">
+        <div class="fs-5 text-dark">
+          <span class="fs-5 text-danger">✔</span> HTML
+        </div>
+        <div class="fs-5 text-dark">
+          <span class="fs-5 text-danger">✔</span> CSS
+        </div>
+        <div class="fs-5 text-dark">
+          <span class="fs-5 text-danger">✔</span> BOOTSTRAP
+        </div>
+      </div>
+      <div class="col-3 text-start">
+        <div class="fs-5 text-dark">
+          <span class="fs-5 text-danger">✔</span> JAVASCRIPT
+        </div>
+        <div class="fs-5 text-dark">
+          <span class="fs-5 text-danger">✔</span> AJAX
+        </div>
+        <div class="fs-5 text-dark">
+          <span class="fs-5 text-danger">✔</span> JQUERY
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-fluid" style="background-color: white;">
+    <div class="row justify-content-center align-items-center d-flex py-5">
+      <div class="rounded-end justify-content-center align-items-center d-flex"
+        style="width: 100%; max-width: 1200px; height: auto; min-height: 170px; border-left: 10px solid red;"
+        id="blue-section">
+        <p class="fs-5 text-center px-3" style="color: white;">Our Front-End Web Development experts will support you
+          even after you've
+          completed the course, so<br>don't worry even if you get stuck on something 'the support' is just one phone
+          call or WhatsApp message<br>away.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-fluid pb-5" style="background-color: white;">
+    <div class="row">
+      <div class="col-12 justify-content-center align-items-center d-flex mt-5">
+        <h1 class="fw-bolder text-center px-3" style="color: black; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);">FAQ
+          for Front-End Web
+          Development Course</h1>
+      </div>
+    </div>
+    <div class="row mt-2">
+      <div class="col-12 justify-content-center align-items-center d-flex">
+        <div style="height: 2px; width: 250px ; background-color: red; "></div>
+      </div>
+    </div>
+
+    <div class="container mt-5">
+      <div class="row justify-content-center g-3">
+        <!-- #1 -->
+        <div class="col-12 col-md-10">
+          <div class="custom-box px-4 py-3 d-flex flex-column justify-content-start" id="box1">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="main-text fw-bold" id="text1">Who is this Front-End Web Development Course for?</div>
+              <button class="btn btn-danger btn-sm icon-btn" onclick="toggleBox(1)">−</button>
+            </div>
+            <div class="extra-content" id="content1">
+              <p class="mt-2 mb-0">This course is ideal for anyone interested in web development, from complete
+                beginners to those looking to sharpen their skills. No prior programming experience is needed.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- #2 -->
+        <div class="col-12 col-md-10">
+          <div class="custom-box px-4 py-3 d-flex flex-column justify-content-start" id="box2">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="main-text fw-bold" id="text2">What will I learn in this Front-End Web Development Course?
+              </div>
+              <button class="btn btn-danger btn-sm icon-btn" onclick="toggleBox(2)">−</button>
+            </div>
+            <div class="extra-content" id="content2">
+              <p class="mt-2 mb-0">You'll learn HTML, CSS, JavaScript, and Bootstrap, with bonus content on JQuery and
+                Ajax. The course covers everything from basic web structure to advanced front-end techniques.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- #3 -->
+        <div class="col-12 col-md-10">
+          <div class="custom-box px-4 py-3 d-flex flex-column justify-content-start" id="box3">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="main-text fw-bold" id="text3">How does this course prepare me for further web development
+                education?</div>
+              <button class="btn btn-danger btn-sm icon-btn" onclick="toggleBox(3)">−</button>
+            </div>
+            <div class="extra-content" id="content3">
+              <p class="mt-2 mb-0">This course lays a solid foundation in front-end development, essential for
+                understanding our advanced Backend Web Development and Laravel courses.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- #4 -->
+        <div class="col-12 col-md-10">
+          <div class="custom-box px-4 py-3 d-flex flex-column justify-content-start" id="box4">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="main-text fw-bold" id="text4">Can I transition to backend development after this course?</div>
+              <button class="btn btn-danger btn-sm icon-btn" onclick="toggleBox(4)">−</button>
+            </div>
+            <div class="extra-content" id="content4">
+              <p class="mt-2 mb-0">Absolutely! We offer a Backend Web Development course focusing on PHP, and MYSQL,
+                with additional training in JQuery and Ajax to further your skills.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- #5 -->
+        <div class="col-12 col-md-10">
+          <div class="custom-box px-4 py-3 d-flex flex-column justify-content-start" id="box5">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="main-text fw-bold" id="text5">What's the next step after learning backend development?</div>
+              <button class="btn btn-danger btn-sm icon-btn" onclick="toggleBox(5)">−</button>
+            </div>
+            <div class="extra-content" id="content5">
+              <p class="mt-2 mb-0">Our advanced course in Backend Web Development with Laravel dives deeper into
+                sophisticated web application development, enhancing your skill set in modern web technologies.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- #6 -->
+        <div class="col-12 col-md-10">
+          <div class="custom-box px-4 py-3 d-flex flex-column justify-content-start" id="box6">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="main-text fw-bold" id="text6">What are the job prospects after completing this course?</div>
+              <button class="btn btn-danger btn-sm icon-btn" onclick="toggleBox(6)">−</button>
+            </div>
+            <div class="extra-content" id="content6">
+              <p class="mt-2 mb-0">Graduates can pursue careers in web design and development, ranging from freelance
+                work to roles in tech companies. Skills acquired are highly valued in the current market.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- #7 -->
+        <div class="col-12 col-md-10">
+          <div class="custom-box px-4 py-3 d-flex flex-column justify-content-start" id="box7">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="main-text fw-bold" id="text7">Do I need any specific software or tools for this course?</div>
+              <button class="btn btn-danger btn-sm icon-btn" onclick="toggleBox(7)">−</button>
+            </div>
+            <div class="extra-content" id="content7">
+              <p class="mt-2 mb-0">A computer with internet access and a text editor for coding (like Visual Studio
+                Code) are the main requirements. All necessary tools and software will be introduced throughout the
+                course.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- #8 -->
+        <div class="col-12 col-md-10">
+          <div class="custom-box px-4 py-3 d-flex flex-column justify-content-start" id="box8">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="main-text fw-bold" id="text8">Is support available during the course?</div>
+              <button class="btn btn-danger btn-sm icon-btn" onclick="toggleBox(8)">−</button>
+            </div>
+            <div class="extra-content" id="content8">
+              <p class="mt-2 mb-0">Yes, our instructors are professionals in the field, offering guidance, support, and
+                real-world insights throughout your learning journey.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- #9 -->
+        <div class="col-12 col-md-10">
+          <div class="custom-box px-4 py-3 d-flex flex-column justify-content-start" id="box9">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="main-text fw-bold" id="text9">Are there any real-world projects in this course?</div>
+              <button class="btn btn-danger btn-sm icon-btn" onclick="toggleBox(9)">−</button>
+            </div>
+            <div class="extra-content" id="content9">
+              <p class="mt-2 mb-0">While this specific course doesn't include a project, you'll have plenty of hands-on
+                exercises. Our subsequent courses involve real-world projects and business scenarios.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- #10 -->
+        <div class="col-12 col-md-10">
+          <div class="custom-box px-4 py-3 d-flex flex-column justify-content-start" id="box10">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="main-text fw-bold" id="text10">What if I have no experience in programming?</div>
+              <button class="btn btn-danger btn-sm icon-btn" onclick="toggleBox(10)">−</button>
+            </div>
+            <div class="extra-content" id="content10">
+              <p class="mt-2 mb-0">No problem! This course is designed for beginners. We start from the basics and
+                gradually build up to more complex concepts.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- #11 -->
+        <div class="col-12 col-md-10">
+          <div class="custom-box px-4 py-3 d-flex flex-column justify-content-start" id="box11">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="main-text fw-bold" id="text11">How long is the Front-End Web Development Course?</div>
+              <button class="btn btn-danger btn-sm icon-btn" onclick="toggleBox(11)">−</button>
+            </div>
+            <div class="extra-content" id="content11">
+              <p class="mt-2 mb-0">The course duration is designed to give you ample time to grasp and practice all
+                concepts thoroughly. Exact duration details will be provided upon enrollment.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- #12 -->
+        <div class="col-12 col-md-10">
+          <div class="custom-box px-4 py-3 d-flex flex-column justify-content-start" id="box12">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="main-text fw-bold" id="text12">Will I receive a certificate after completing the course?</div>
+              <button class="btn btn-danger btn-sm icon-btn" onclick="toggleBox(12)">−</button>
+            </div>
+            <div class="extra-content" id="content12">
+              <p class="mt-2 mb-0">Yes, upon successful completion of the course, you will receive a certificate, which
+                can be a valuable addition to your professional portfolio.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="row justify-content-center align-items-center d-flex">
+      <div class="col-12 col-md-8">
+        <h1 style="font-size: 40px; color:rgb(28, 27, 27); text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);"
+          class="fw-bolder mt-5 text-center px-3">
+          Kickstart Your Career: Become a Developer,<br> Marketer,Web Designer, or Video Editor
+        </h1>
+      </div>
+      <div class="col-12 col-md-8 mt-4 mb-4">
+        <div style="width: 200px; height: 2px; background-color: red; margin: 0 auto;"></div>
+      </div>
+      <div class="col-12 col-md-8 mt-3">
+        <p class="fs-6 fw-bold text-center px-3" style="color: #575757;">
+          At SofticEra, we pride ourselves as a rapidly growing IT institute in Pakistan. Since our establishment in
+          2021, we've specialised in a variety of courses including web development, graphic design, digital marketing,
+          and essential IT skills, alongside comprehensive Web Design & SEO courses. Our commitment has been unwavering
+          in training hundreds of Pakistani youth, helping them transform into skilled professionals in their chosen
+          fields. Whether you aspire to be a graphic designer, web developer, video editor, or digital marketing expert,
+          SofticEra is your go-to institute. We're renowned for offering the best tech courses in Pakistan, making us
+          the ideal choice for your career advancement.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- LAST SECTION -->
+  <section class="footer-section py-5 text-white" style="background-color: #000;">
+    <div class="container">
+      <div class="row">
+        <!-- Logo + Description -->
+        <div class="col-md-4 mb-4">
+          <img src="new sofrtt.png" alt="SofticEra Logo" style="max-width: 180px; margin-bottom: 20px;"
+            class="mx-auto mx-md-0 d-block">
+          <p style="line-height: 1.8; font-size: 14px;">
+            We are a digital marketing agency & training courses provider. Whether you need to hire us for one of your
+            projects or are looking to become a web designer, graphic designer, or digital marketing expert, or want
+            to learn SEO and Social Media Marketing then you are at the right place.
+          </p>
+        </div>
+
+        <!-- Where to Find Us -->
+        <div class="col-md-4 mb-4">
+          <h5 class="fw-bold mb-3">Where to find us</h5>
+          <hr style="width: 60px; border: 1px solid white; margin: 0 0 15px 0;">
+          <p style="font-size: 14px; line-height: 1.8;">
+            <i class="bi bi-geo-alt-fill"></i> 2nd Floor<br>
+            Nishat IT Tower<br>
+            Near GC University<br>
+            Jinnah Colony<br>
+            Faisalabad
+          </p>
+        </div>
+
+        <!-- Get in Touch -->
+        <div class="col-md-4 mb-4">
+          <h5 class="fw-bold mb-3">Get in touch</h5>
+          <hr style="width: 60px; border: 1px solid white; margin: 0 0 15px 0;">
+          <p style="font-size: 14px;"><i class="bi bi-telephone-fill"></i> +92 304 0447 000</p>
+          <p style="font-size: 14px;"><i class="bi bi-whatsapp"></i> +44 7441 349 477</p>
+          <p style="font-size: 14px;"><i class="bi bi-envelope-fill"></i> info@softicera.com</p>
+          <div class="mt-3">
+            <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-5"></i></a>
+            <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-5"></i></a>
+            <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-5"></i></a>
+            <a href="#" class="text-white"><i class="bi bi-linkedin fs-5"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <hr class="text-secondary">
+      <div class="text-center small mt-3" style="color: white;">
+        © Copyright 2025 | Designed and Maintained by SofticEra
+      </div>
+    </div>
+  </section>
+  <!-- ... -->
+  <script>
+    function toggleBox(id) {
+      const box = document.getElementById('box' + id);
+      const text = document.getElementById('text' + id);
+      box.classList.toggle('expanded');
+      text.classList.toggle('red');
+    }
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

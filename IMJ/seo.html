@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SEO Course | SofticEra</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    .course-banner {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 450px;
+      z-index: 9999;
+    }
+
+    .nav-item:hover .course-banner {
+      display: block;
+    }
+
+    .course-item {
+      transition: transform 0.3s ease;
+    }
+
+    .course-item:hover {
+      transform: translateX(10px);
+    }
+
+    @media (max-width: 992px) {
+      .course-banner {
+        position: static;
+        transform: none;
+        width: 100%;
+        display: none;
+        padding: 15px;
+        box-shadow: none;
+      }
+      
+      .nav-item.active .course-banner {
+        display: block;
+      }
+      
+      .navbar-nav {
+        padding-bottom: 15px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .course-banner {
+        width: 100%;
+      }
+    }
+
+    .fade-in-image {
+      opacity: 0;
+      animation: fadeIn 1s ease-in forwards;
+      animation-delay: 2s;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .float-image {
+      animation: floatUpDown 3s ease-in-out infinite;
+    }
+
+    @keyframes floatUpDown {
+      0% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-30px);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    .hero-section {
+      background: linear-gradient(to right,
+          rgba(245, 230, 90, 0.3) 0%,
+          rgba(82, 213, 125, 0.2) 25%,
+          rgba(79, 107, 243, 0.2) 50%,
+          rgba(236, 124, 165, 0.3) 75%,
+          rgba(236, 124, 165, 0.3) 100%);
+      min-height: 100vh;
+      padding-top: 80px;
+    }
+
+    .hero-title {
+      font-size: 2rem;
+    }
+
+    @media (min-width: 768px) {
+      .hero-title {
+        font-size: 3rem;
+      }
+    }
+
+    @media screen and (max-width: 992px) {
+      #img-div {
+        display: none;
+      }
+      
+      .hero-section .row {
+        margin-left: 0 !important;
+      }
+      
+      .hero-section {
+        padding-top: 70px;
+        min-height: auto;
+        padding-bottom: 50px;
+      }
+    }
+
+    .info-card {
+      color: white;
+      border-radius: 10px;
+      padding: 30px 25px;
+      margin-bottom: 20px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    @media (min-width: 768px) {
+      .info-card {
+        padding: 50px 40px;
+        margin-bottom: 40px;
+      }
+    }
+
+    .card-red {
+      background-color: #f60000;
+    }
+
+    .card-blue {
+      background-color: #007bff;
+    }
+
+    .form-container {
+      background-color: #edf4ff;
+      border-radius: 10px;
+      padding: 25px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+      height: 100%;
+    }
+
+    @media (min-width: 768px) {
+      .form-container {
+        padding: 30px;
+      }
+    }
+
+    .form-check-label {
+      margin-left: 5px;
+    }
+
+    #learn-wrapper {
+      background-color: #f9f9f9;
+      padding: 40px 0;
+    }
+
+    @media (min-width: 768px) {
+      #learn-wrapper {
+        padding: 60px 0;
+      }
+    }
+
+    #learn-content {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    #learn-title {
+      font-weight: 700;
+      text-shadow: 2px 2px 2px #aaa;
+      border-bottom: 3px solid red;
+      display: inline-block;
+      padding-bottom: 5px;
+      margin-bottom: 30px;
+      font-size: 1.8rem;
+    }
+
+    @media (min-width: 768px) {
+      #learn-title {
+        font-size: 2.2rem;
+        margin-bottom: 40px;
+      }
+    }
+
+    .learn-item {
+      margin-bottom: 15px;
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .learn-icon {
+      color: red;
+      font-size: 1.2rem;
+      margin-right: 10px;
+      line-height: 1.5;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 768px) {
+      .learn-col {
+        margin-bottom: 20px;
+      }
+    }
+
+    .second-hero {
+      background: linear-gradient(to right,
+          rgba(245, 230, 90, 0.3) 0%,
+          rgba(82, 213, 125, 0.2) 25%,
+          rgba(79, 107, 243, 0.2) 50%,
+          rgba(236, 124, 165, 0.3) 75%,
+          rgba(236, 124, 165, 0.3) 100%);
+      padding: 50px 0;
+    }
+
+    @media (min-width: 768px) {
+      .second-hero {
+        padding: 80px 0;
+      }
+    }
+
+    #blue-section {
+      background: linear-gradient(to right,
+          rgb(13, 13, 89) 0%,
+          rgb(82, 82, 145) 25%,
+          rgb(56, 56, 108) 50%,
+          rgb(41, 41, 78),
+          rgb(53, 53, 94));
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .custom-box {
+      height: 70px;
+      transition: all 0.4s ease;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      border-radius: 12px;
+      overflow: hidden;
+      background-color: white;
+      margin-bottom: 15px;
+    }
+
+    .custom-box.expanded {
+      height: auto;
+      min-height: 150px;
+    }
+
+    .main-text {
+      color: rgb(66, 65, 65);
+      transition: color 0.4s;
+      padding-right: 40px;
+    }
+
+    .main-text.red {
+      color: red;
+    }
+
+    .extra-content {
+      display: none;
+      margin-top: 10px;
+      padding-right: 15px;
+    }
+
+    .custom-box.expanded .extra-content {
+      display: block;
+    }
+
+    .icon-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      padding: 0;
+      font-size: 18px;
+      text-align: center;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    @media (max-width: 768px) {
+      .hero-title {
+        font-size: 2rem !important;
+      }
+
+      .second-hero h1 {
+        font-size: 1.5rem !important;
+        text-align: center;
+      }
+
+      .container .row [class*='col-'] {
+        margin-bottom: 20px;
+      }
+      
+      .accordion-container {
+        width: 100% !important;
+      }
+      
+      .custom-box {
+        padding: 15px !important;
+      }
+    }
+    
+    .accordion-container {
+      width: 80%;
+      border: 1px solid rgba(0,0,0,0.2);
+    }
+    
+    @media (max-width: 1200px) {
+      .accordion-container {
+        width: 90%;
+      }
+    }
+    
+    .navbar-brand img {
+      width: 180px;
+      height: auto;
+    }
+    
+    @media (max-width: 576px) {
+      .navbar-brand img {
+        width: 150px;
+      }
+      
+      .info-card {
+        text-align: center;
+        flex-direction: column;
+      }
+      
+      .info-card i {
+        margin-bottom: 15px;
+        margin-right: 0 !important;
+      }
+      
+      .contact-info {
+        text-align: center;
+      }
+      
+      .contact-info div {
+        justify-content: center;
+      }
+    }
+    
+    .footer-section p, .footer-section a {
+      font-size: 0.9rem;
+    }
+    
+    @media (max-width: 768px) {
+      .footer-section .col-md-4 {
+        margin-bottom: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-lg fixed-top bg-white border-bottom">
+    <div class="container position-relative">
+      <a class="navbar-brand" href="#">
+        <img src="brand.png" alt="Logo" class="img-fluid">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav ms-auto text-center">
+          <!-- Courses nav-item with hover banner -->
+          <li class="nav-item mx-2 position-relative dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="coursesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Courses</a>
+            <div class="dropdown-menu course-banner p-4 rounded shadow" aria-labelledby="coursesDropdown">
+              <!-- Course 1 -->
+              <div class="d-flex align-items-start gap-3 mb-3 course-item">
+                <a href="FED.html" class="d-flex align-items-center justify-content-center bg-danger text-white rounded-circle" style="width: 45px; height: 45px;">
+                  <i class="fas fa-code"></i>
+                </a>
+                <div class="text-start">
+                  <h6 class="text-uppercase fw-bold mb-1">Front-End Development</h6>
+                  <p class="mb-0 small text-muted">Harness the power of web development with coding</p>
+                </div>
+              </div>
+
+              <!-- Course 2 -->
+              <div class="d-flex align-items-start gap-3 mb-3 course-item">
+                <a href="gdc.html" class="d-flex align-items-center justify-content-center bg-primary text-white rounded-circle" style="width: 45px; height: 45px;">
+                  <i class="fas fa-paint-brush"></i>
+                </a>
+                <div class="text-start">
+                  <h6 class="text-uppercase fw-bold mb-1">Graphic Design Course</h6>
+                  <p class="mb-0 small text-muted">Turn your inner creativity into a business</p>
+                </div>
+              </div>
+
+              <!-- Course 3 -->
+              <div class="d-flex align-items-start gap-3 mb-3 course-item">
+                <a href="sm.html" class="d-flex align-items-center justify-content-center bg-warning text-white rounded-circle" style="width: 45px; height: 45px;">
+                  <i class="fas fa-bullhorn"></i>
+                </a>
+                <div class="text-start">
+                  <h6 class="text-uppercase fw-bold mb-1">Social Media Marketing</h6>
+                  <p class="mb-0 small text-muted">Learn to market business with smm</p>
+                </div>
+              </div>
+
+              <!-- Course 4 -->
+              <div class="d-flex align-items-start gap-3 course-item">
+                <a href="seo.html" class="d-flex align-items-center justify-content-center bg-info text-white rounded-circle" style="width: 45px; height: 45px;">
+                  <i class="fas fa-chart-line"></i>
+                </a>
+                <div class="text-start">
+                  <h6 class="text-uppercase fw-bold mb-1">Search Engine Optimization</h6>
+                  <p class="mb-0 small text-muted">The Key to Opening Doors of opportunities</p>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- Other nav links -->
+          <li class="nav-item mx-2"><a class="nav-link" href="#">Why Choose Us?</a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href="#">About Us</a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href="#">Course Fees</a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href="#">Internships</a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href="#">Blogs</a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href="#">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <section class="hero-section d-flex align-items-center">
+    <div class="container py-5">
+      <div class="row align-items-center">
+        <div class="col-lg-6 text-center text-lg-start" id="tex-div">
+          <h2 class="hero-title fw-bold">The Ultimate SEO<br>Course</h2>
+
+          <h5 class="mt-4 text-secondary">Our SEO Course will teach you a Step-by-Step Process to Rank #1 on Google. You will learn skills like Keyword Research, On-Page SEO, Off-Page SEO,Technical SEO & much More.</h5>
+          <div class="container mt-5 contact-info">
+            <div class="d-flex align-items-center mb-3">
+              <i class="fab fa-whatsapp fa-2x text-success me-2 fs-3"></i>
+              <span class="fs-4 fw-bold">+92 300 1234567</span>
+            </div>
+            <div class="d-flex align-items-center">
+              <i class="fab fa-whatsapp fa-2x text-success me-2 fs-3"></i>
+              <span class="fs-4 fw-bold">+92 300 1234567</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-6 mt-4 mt-lg-0 text-center fade-in-image" id="img-div">
+          <img src="ns.png" alt="Hero Image" class="img-fluid" style="max-height: 400px;">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="container py-5">
+    <div class="row justify-content-center align-items-start g-4">
+      <div class="col-lg-5 col-md-6">
+        <div class="info-card card-red d-flex align-items-center">
+          <i class="bi bi-person-video3 me-3" style="font-size: 70px;"></i>
+          <div>
+            <h2 class="fw-bold">Methods of Learning</h2>
+            <p class="mb-0 fs-5">Classroom | Online</p>
+          </div>
+        </div>
+
+        <div class="info-card card-blue d-flex align-items-center">
+          <i class="bi bi-calendar-event me-3" style="font-size: 70px;"></i>
+          <div>
+            <h2 class="fw-bold">Course Duration</h2>
+            <p class="mb-0 fs-5">8 Weeks</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Enrolment Form -->
+      <div class="col-lg-5 col-md-6">
+        <div class="form-container">
+          <h4 class="text-center fw-bold mb-4">Enrolment Form</h4>
+          <form>
+            <div class="mb-3">
+              <label class="form-label">Full Name <span class="text-danger">(Required)</span></label>
+              <input type="text" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Email <span class="text-danger">(Required)</span></label>
+              <input type="email" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Contact No. <span class="text-danger">(Required)</span></label>
+              <input type="text" class="form-control" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Preferred Learning Method <span class="text-danger">(Required)</span></label><br>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="method" id="classroom" value="classroom" required>
+                <label class="form-check-label" for="classroom">Classroom</label>
+              </div>
+              <br>
+              <div class="form-check form-check-inline mt-2">
+                <input class="form-check-input" type="radio" name="method" id="online" value="online" required>
+                <label class="form-check-label" for="online">Online</label>
+              </div>
+            </div>
+
+            <div class="d-grid">
+              <button type="submit" class="btn btn-danger mt-3 mt-md-5">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- learning section -->
+  <section>
+    <div id="learn-wrapper" class="container-fluid">
+      <div id="learn-content">
+        <h1 id="learn-title">What you'll learn</h1>
+        <div class="row">
+          <div class="col-md-6 learn-col">
+            <div class="learn-item"><span class="learn-icon">✔</span>Learn about SEO and understand how it all works.</div>
+            <div class="learn-item"><span class="learn-icon">✔</span>Learn how to structure and optimise your website to rank on page 1.</div>
+            <div class="learn-item"><span class="learn-icon">✔</span>SEO Training strategies used by top SEO experts.</div>
+            <div class="learn-item"><span class="learn-icon">✔</span>How to find the best keywords to target for your website.</div>
+            <div class="learn-item"><span class="learn-icon">✔</span>How to see all the keywords your competitors are targeting.</div>
+            <div class="learn-item"><span class="learn-icon">✔</span>How to find 100s of content ideas for your blog.</div>
+          </div>
+          <div class="col-md-6 learn-col">
+            <div class="learn-item"><span class="learn-icon">✔</span>How to build high-quality SEO backlinks.</div>
+            <div class="learn-item"><span class="learn-icon">✔</span>Master technical SEO and outsmart your competitors.</div>
+            <div class="learn-item"><span class="learn-icon">✔</span>Find out how you can use internal links to rank on page 1.</div>
+            <div class="learn-item"><span class="learn-icon">✔</span>How to deal with a negative SEO attack.</div>
+            <div class="learn-item"><span class="learn-icon">✔</span>Perform an SEO technical, content and link audit.</div>
+            <div class="learn-item"><span class="learn-icon">✔</span>Whitehat and Blackhat SEO principles.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section style="background: linear-gradient(to right, #f5d1d1, #d6f5ec, #fff4d6); padding: 40px 0;">
+    <div class="container text-center">
+      <h2 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 0.5rem; text-shadow: 1px 1px 3px rgba(0,0,0,0.3);">
+        SEO Course Content
+      </h2>
+      <div style="height: 2px; width: 150px; background: red; margin: 0 auto 25px;"></div>
+    </div>
+
+    <div class="container d-flex justify-content-center">
+      <div class="accordion-container">
+        <!-- Accordion -->
+        <div class="accordion" id="courseAccordion" style="border: none;">
+          <!-- Illustrator -->
+          <div class="accordion-item" style="border: none; border-bottom: 1px solid rgba(0,0,0,0.2); background: transparent;">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" style="font-weight: 600; background: transparent; padding-left: 1rem; border-left: 4px solid red; border-radius: 0;">
+                on-Page SEO
+              </button>
+            </h2>
+            <div id="collapseOne" class="accordion-collapse collapse">
+              <div class="accordion-body" style="background: transparent;">
+                <ul style="padding-left: 20px; margin: 0;">
+                  <li>Produce Detailed Illustrations</li>
+                  <li>Design Mock-Ups for Web Pages</li>
+                  <li>Create Multiple Images for Your Portfolio</li>
+                  <li>Speed up Your Productivity & Workflow</li>
+                  <li>Set Permanent Defaults for Fonts & Colours</li>
+                  <li>Create Your Own Custom Icons</li>
+                  <li>Blog Post Templates, Poster / Flyer</li>
+                  <li>Create Social Media Posts and Banners</li>
+                  <li>Infographics & Branded Icons</li>
+                  <li>Newsletter Banners & 3D Icons</li>
+                  <li>Make 3D Text & Logos</li>
+                  <li>Create a Postcard with Colour & Prepress Tricks</li>
+                  <li>And much more!</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Photoshop -->
+          <div class="accordion-item" style="border: none; border-bottom: 1px solid rgba(0,0,0,0.2); background: transparent;">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="font-weight: 600; background: transparent; padding-left: 1rem; border-left: 4px solid red; border-radius: 0;">
+                Technical SEO
+              </button>
+            </h2>
+            <div id="collapseTwo" class="accordion-collapse collapse">
+              <div class="accordion-body" style="background: transparent;">
+                <ul style="padding-left: 20px; margin: 0;">
+                  <li>How to Digitally Manipulate Images</li>
+                  <li>Improve Image Quality</li>
+                  <li>Learning Adobe Photoshop Essentials</li>
+                  <li>Creating Fruit Juice Posters</li>
+                  <li>Set Permanent Defaults for Fonts and Colors</li>
+                  <li>Retouch to Make Perfect Skin</li>
+                  <li>Mask People / Objects with One Click</li>
+                  <li>Make 3D Text & Logos</li>
+                  <li>Create Postcards with Colour & Prepress Tricks</li>
+                  <li>Mastering Lines & Strokes</li>
+                  <li>And much more!</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- Lightroom -->
+          <div class="accordion-item" style="border: none; border-bottom: 1px solid rgba(0,0,0,0.2); background: transparent;">
+            <h2 class="accordion-header">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="font-weight: 600; background: transparent; padding-left: 1rem; border-left: 4px solid red; border-radius: 0;">
+                Off-page SEO
+              </button>
+            </h2>
+            <div id="collapseThree" class="accordion-collapse collapse">
+              <div class="accordion-body" style="background: transparent;">
+                <ul style="padding-left: 20px; margin: 0;">
+                  <li>Exposure Correction</li>
+                  <li>File Management & Organization</li>
+                  <li>Converting RAW into JPEG</li>
+                  <li>Lightroom CC Colour Correction for Portraits</li>
+                  <li>Adjust Colour Temperature</li>
+                  <li>And much more!</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Static List Items -->
+        <ul class="list-group" style="border-radius: 0; margin: 0;">
+          <li class="list-group-item" style="font-weight: 600; background: transparent; border: none; border-top: 1px solid rgba(0,0,0,0.2); border-left: 4px solid red; border-radius: 0;">
+            InDesign
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+  
+  <section class="container-fluid py-5" style="background-color: white;">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-10">
+        <div class="d-flex align-items-center justify-content-center mt-3 mt-md-5 rounded-end p-3 p-md-4" id="blue-section">
+          <p class="fs-5 text-center m-0 text-white">
+            Our SEO experts will support you even after you've completed the course, so don't worry even if you get stuck on something 'the support' is just one phone call or WhatsApp message away.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <section class="container-fluid pb-5" style="background-color: white;">
+    <div class="row justify-content-center">
+      <div class="col-12 text-center">
+        <h1 class="fw-bolder mb-3" style="color: black; text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);">FAQ for SEO Course</h1>
+        <div style="height: 2px; width: 200px; background-color: red; margin: 0 auto 30px;"></div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="row justify-content-center g-3">
+        <!-- #1 -->
+        <div class="col-12 col-md-10">
+          <div class="custom-box px-4 py-3" id="box1">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="main-text fw-bold" id="text1">What is SEO and why is it important?</div>
+              <button class="btn btn-danger btn-sm icon-btn" onclick="toggleBox(1)">+</button>
+            </div>
+            <div class="extra-content" id="content1">
+              <p class="mt-2 mb-0">SEO (Search Engine Optimization) helps your website rank higher on search engines like Google, which increases visibility, traffic, and potential customers.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- #2 -->
+        <div class="col-12 col-md-10">
+          <div class="custom-box px-4 py-3" id="box2">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="main-text fw-bold" id="text2">Is this SEO course beginner-friendly?</div>
+              <button class="btn btn-danger btn-sm icon-btn" onclick="toggleBox(2)">+</button>
+            </div>
+            <div class="extra-content" id="content2">
+              <p class="mt-2 mb-0">Yes! This course is designed for beginners and professionals alike. You'll learn step-by-step from the fundamentals to advanced SEO strategies.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- #3 -->
+        <div class="col-12 col-md-10">
+          <div class="custom-box px-4 py-3" id="box3">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="main-text fw-bold" id="text3">What topics are covered in this course?</div>
+              <button class="btn btn-danger btn-sm icon-btn" onclick="toggleBox(3)">+</button>
+            </div>
+            <div class="extra-content" id="content3">
+              <p class="mt-2 mb-0">The course covers keyword research, on-page SEO, technical SEO, content optimization, backlinks, Google algorithms, and both Whitehat and Blackhat techniques.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- #4 -->
+        <div class="col-12 col-md-10">
+          <div class="custom-box px-4 py-3" id="box4">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="main-text fw-bold" id="text4">Will I learn how to use SEO tools?</div>
+              <button class="btn btn-danger btn-sm icon-btn" onclick="toggleBox(4)">+</button>
+            </div>
+            <div class="extra-content" id="content4">
+              <p class="mt-2 mb-0">Absolutely. You'll get practical training using tools like Google Search Console, Ahrefs, SEMrush, Ubersuggest, and more.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- #5 -->
+        <div class="col-12 col-md-10">
+          <div class="custom-box px-4 py-3" id="box5">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="main-text fw-bold" id="text5">Do I need a website to take this course?</div>
+              <button class="btn btn-danger btn-sm icon-btn" onclick="toggleBox(5)">+</button>
+            </div>
+            <div class="extra-content" id="content5">
+              <p class="mt-2 mb-0">Not at all. You'll be provided with demos and practice exercises. But having your own website helps apply what you learn practically.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- #6 -->
+        <div class="col-12 col-md-10">
+          <div class="custom-box px-4 py-3" id="box6">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="main-text fw-bold" id="text6">Will this course cover local SEO?</div>
+              <button class="btn btn-danger btn-sm icon-btn" onclick="toggleBox(6)">+</button>
+            </div>
+            <div class="extra-content" id="content6">
+              <p class="mt-2 mb-0">Yes, the course includes strategies for local SEO such as optimizing Google Business Profile, local citations, and location-specific keywords.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- #7 -->
+        <div class="col-12 col-md-10">
+          <div class="custom-box px-4 py-3" id="box7">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="main-text fw-bold" id="text7">Is there a certificate after course completion?</div>
+              <button class="btn btn-danger btn-sm icon-btn" onclick="toggleBox(7)">+</button>
+            </div>
+            <div class="extra-content" id="content7">
+              <p class="mt-2 mb-0">Yes! You'll receive a certificate after successfully completing all modules and quizzes, which you can add to your portfolio or resume.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- #8 -->
+        <div class="col-12 col-md-10">
+          <div class="custom-box px-4 py-3" id="box8">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="main-text fw-bold" id="text8">What kind of support is available?</div>
+              <button class="btn btn-danger btn-sm icon-btn" onclick="toggleBox(8)">+</button>
+            </div>
+            <div class="extra-content" id="content8">
+              <p class="mt-2 mb-0">Our instructors and support team are available via chat and email to assist you throughout your learning experience.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- #9 -->
+        <div class="col-12 col-md-10">
+          <div class="custom-box px-4 py-3" id="box9">
+            <div class="d-flex justify-content-between align-items-center">
+              <div class="main-text fw-bold" id="text9">Are real-world SEO case studies included?</div>
+              <button class="btn btn-danger btn-sm icon-btn" onclick="toggleBox(9)">+</button>
+            </div>
+            <div class="extra-content" id="content9">
+              <p class="mt-2 mb-0">Yes, we include real examples of websites before and after SEO, along with analysis of how rankings were improved step-by-step.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-fluid bg-light py-5">
+    <div class="row justify-content-center">
+      <div class="col-12 col-lg-8">
+        <h1 class="fw-bolder text-center" style="font-size: 2rem; color:rgb(28, 27, 27); text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);">
+          Before Signing up for the SEO Course
+        </h1>
+        <div class="d-flex justify-content-center mt-3 mb-4">
+          <div style="width: 150px; height: 2px; background-color: red;"></div>
+        </div>
+        <p class="fs-6 fw-bold text-center" style="color: #575757;">
+          At SofticEra, we pride ourselves as a rapidly growing IT institute in Pakistan. Since our establishment in 2021, we've specialised in a variety of courses including web development, graphic design, digital marketing, and essential IT skills, alongside comprehensive Web Design & SEO courses. Our commitment has been unwavering in training hundreds of Pakistani youth, helping them transform into skilled professionals in their chosen fields. Whether you aspire to be a graphic designer, web developer, video editor, or digital marketing expert, SofticEra is your go-to institute. We're renowned for offering the best tech courses in Pakistan, making us the ideal choice for your career advancement.
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- LAST SECTION -->
+  <section class="footer-section py-5 text-white" style="background-color: #000;">
+    <div class="container">
+      <div class="row">
+        <!-- Logo + Description -->
+        <div class="col-md-4 mb-4 mb-md-0">
+          <img src="new sofrtt.png" alt="SofticEra Logo" style="max-width: 180px; margin-bottom: 20px;" class="img-fluid">
+          <p style="line-height: 1.6;">
+            We are a digital marketing agency & training courses provider. Whether you need to hire us for one of your projects or are looking to become a web designer, graphic designer, or digital marketing expert, or want to learn SEO and Social Media Marketing then you are at the right place.
+          </p>
+        </div>
+
+        <!-- Where to Find Us -->
+        <div class="col-md-4 mb-4 mb-md-0">
+          <h5 class="fw-bold mb-3">Where to find us</h5>
+          <hr style="width: 60px; border: 1px solid white; margin: 0 0 15px 0;">
+          <p style="line-height: 1.6;">
+            <i class="bi bi-geo-alt-fill me-2"></i> 2nd Floor<br>
+            Nishat IT Tower<br>
+            Near GC University<br>
+            Jinnah Colony<br>
+            Faisalabad
+          </p>
+        </div>
+
+        <!-- Get in Touch -->
+        <div class="col-md-4">
+          <h5 class="fw-bold mb-3">Get in touch</h5>
+          <hr style="width: 60px; border: 1px solid white; margin: 0 0 15px 0;">
+          <p><i class="bi bi-telephone-fill me-2"></i> +92 304 0447 000</p>
+          <p><i class="bi bi-whatsapp me-2"></i> +44 7441 349 477</p>
+          <p><i class="bi bi-envelope-fill me-2"></i> info@softicera.com</p>
+          <div class="mt-3">
+            <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-5"></i></a>
+            <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-5"></i></a>
+            <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-5"></i></a>
+            <a href="#" class="text-white"><i class="bi bi-linkedin fs-5"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <hr class="text-secondary mt-4">
+      <div class="text-center small mt-3">
+        © Copyright 2025 | Designed and Maintained by SofticEra
+      </div>
+    </div>
+  </section>
+
+  <script>
+    function toggleBox(id) {
+      const box = document.getElementById('box' + id);
+      const text = document.getElementById('text' + id);
+      const btn = box.querySelector('.icon-btn');
+      
+      box.classList.toggle('expanded');
+      text.classList.toggle('red');
+      
+      if (box.classList.contains('expanded')) {
+        btn.textContent = '−';
+      } else {
+        btn.textContent = '+';
+      }
+    }
+    
+    // Initialize all boxes to collapsed state
+    document.addEventListener('DOMContentLoaded', function() {
+      for (let i = 1; i <= 9; i++) {
+        const btn = document.querySelector('#box' + i + ' .icon-btn');
+        if (btn) {
+          btn.textContent = '+';
+        }
+      }
+    });
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
