@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Softicera Landing</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <style>
+    /* Reset default margins and padding */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    .course-banner {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 450px;
+      z-index: 9999;
+    }
+
+    .nav-item:hover .course-banner {
+      display: block;
+    }
+
+    .course-item {
+      transition: transform 0.3s ease;
+    }
+
+    .course-item:hover {
+      transform: translateX(10px);
+    }
+
+    @media (max-width: 768px) {
+      .course-banner {
+        width: 95%;
+        left: 2.5%;
+        transform: none;
+        position: relative;
+        margin-top: 10px;
+      }
+      
+      .nav-item:hover .course-banner {
+        display: block;
+      }
+      
+      .navbar-nav {
+        align-items: flex-start;
+      }
+      
+      .nav-item {
+        width: 100%;
+      }
+      
+      .nav-link {
+        padding: 10px 15px;
+      }
+    }
+
+    @media (max-width: 576px) {
+      .navbar-brand img {
+        width: 180px !important;
+        height: auto !important;
+      }
+    }
+
+    .fade-in-image {
+      opacity: 0;
+      animation: fadeIn 1s ease-in forwards;
+      animation-delay: 2s;
+    }
+
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+
+    .float-image {
+      animation: floatUpDown 3s ease-in-out infinite;
+    }
+
+    @keyframes floatUpDown {
+      0% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-30px);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+    .hero-section {
+      background: linear-gradient(to right,
+          rgba(245, 230, 90, 0.3) 0%,
+          rgba(82, 213, 125, 0.2) 25%,
+          rgba(79, 107, 243, 0.2) 50%,
+          rgba(236, 124, 165, 0.3) 75%,
+          rgba(236, 124, 165, 0.3) 100%);
+      min-height: 100vh;
+    }
+
+    .hero-title {
+      font-size: 2.5rem;
+    }
+
+    @media (min-width: 576px) {
+      .hero-title {
+        font-size: 3rem;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .hero-title {
+        font-size: 4rem;
+      }
+    }
+
+    .video-wrapper {
+      width: 100%;
+      max-width: 800px;
+      position: relative;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      margin: 0 auto;
+    }
+
+    @media (min-width: 768px) {
+      .video-wrapper {
+        padding-bottom: 50%;
+      }
+    }
+
+    @media (min-width: 992px) {
+      .video-wrapper {
+        padding-bottom: 42.85%; /* 21:9 Aspect Ratio */
+      }
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border-radius: 10px;
+    }
+
+    .service-box {
+      display: flex;
+      align-items: center;
+      background: #fff;
+      padding: 15px 20px;
+      margin-bottom: 15px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .service-box i {
+      font-size: 24px;
+      margin-right: 15px;
+      width: 30px;
+      text-align: center;
+    }
+
+    /* Responsive adjustments for the services section */
+    @media (max-width: 1199px) {
+      .service-box-container {
+        width: 100% !important;
+        margin-left: 0 !important;
+      }
+    }
+
+    @media (max-width: 991px) {
+      .left-column-content {
+        margin-left: 0 !important;
+        padding: 0 15px;
+      }
+
+      .right-column-content {
+        padding: 0 15px;
+      }
+    }
+
+    /* Responsive adjustments for the grid blocks */
+    @media (max-width: 767px) {
+      .grid-block {
+        margin-bottom: 30px;
+      }
+
+      .grid-block img {
+        width: 80px !important;
+        height: 80px !important;
+      }
+    }
+
+    /* Card responsiveness */
+    .course-card {
+      min-height: 380px;
+    }
+
+    @media (max-width: 767px) {
+      .course-card {
+        min-height: auto;
+        margin-bottom: 20px;
+      }
+    }
+
+    /* Footer responsiveness */
+    @media (max-width: 767px) {
+      .footer-section .col-md-4 {
+        margin-bottom: 30px;
+        text-align: center;
+      }
+
+      .footer-section img {
+        margin: 0 auto 20px;
+        display: block;
+      }
+    }
+
+    /* Button responsiveness */
+    .cta-button {
+      white-space: nowrap;
+    }
+
+    @media (max-width: 575px) {
+      .cta-button {
+        width: 100%;
+        margin-bottom: 10px;
+      }
+
+      .hero-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .hero-buttons a {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    /* Responsive adjustments for the welcome section */
+    @media (max-width: 991px) {
+      .welcome-section .col-3 {
+        display: none;
+      }
+
+      .welcome-section .col-6 {
+        width: 100%;
+      }
+    }
+
+    /* Service boxes responsiveness */
+    @media (max-width: 767px) {
+      .service-box-style {
+        width: 100% !important;
+        margin-left: 0 !important;
+        height: auto !important;
+      }
+    }
+
+    @media (max-width: 575px) {
+      .service-box-style {
+        padding: 10px 15px !important;
+      }
+
+      .service-box-style img {
+        width: 50px !important;
+        height: 50px !important;
+        margin-right: 10px !important;
+      }
+
+      .service-box-style span {
+        font-size: 18px !important;
+      }
+    }
+
+    @media (max-width: 992px) {
+      .left-column-content {
+        text-align: center !important;
+      }
+
+      .left-column-content>div {
+        margin-left: auto !important;
+        margin-right: auto !important;
+        padding-left: 15px !important;
+        padding-right: 15px !important;
+      }
+
+      .service-box {
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+    }
+    
+    /* New responsive styles */
+    .service-box-responsive {
+      width: 100%;
+      max-width: 450px;
+      height: auto;
+      min-height: 90px;
+      display: flex;
+      align-items: center;
+      background: #fff;
+      padding: 12px 18px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.5);
+      margin: 15px auto;
+    }
+    
+    @media (min-width: 768px) {
+      .service-box-responsive:nth-child(even) {
+        margin-left: auto;
+      }
+      
+      .service-box-responsive:nth-child(odd) {
+        margin-right: auto;
+      }
+    }
+    
+    @media (max-width: 767px) {
+      .service-box-responsive {
+        margin-left: auto !important;
+        margin-right: auto !important;
+      }
+      
+      .service-box-responsive img {
+        width: 60px;
+        height: 60px;
+      }
+      
+      .service-box-responsive span {
+        font-size: 18px !important;
+      }
+    }
+    
+    .grid-block-responsive {
+      margin-bottom: 30px;
+    }
+    
+    @media (max-width: 991px) {
+      .grid-block-responsive {
+        flex: 0 0 33.333333%;
+        max-width: 33.333333%;
+      }
+    }
+    
+    @media (max-width: 767px) {
+      .grid-block-responsive {
+        flex: 0 0 50%;
+        max-width: 50%;
+      }
+    }
+    
+    @media (max-width: 575px) {
+      .grid-block-responsive {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }
+    
+    .text-responsive {
+      font-size: 1rem;
+    }
+    
+    @media (min-width: 576px) {
+      .text-responsive {
+        font-size: 1.05rem;
+      }
+    }
+    
+    @media (min-width: 768px) {
+      .text-responsive {
+        font-size: 1.1rem;
+      }
+    }
+    
+    @media (min-width: 992px) {
+      .text-responsive {
+        font-size: 1.15rem;
+      }
+    }
+    
+    /* Fix for navbar toggler */
+    .navbar-toggler:focus {
+      box-shadow: none;
+    }
+    
+    /* Fix for extra width issues */
+    .container-fluid {
+      padding-right: 0;
+      padding-left: 0;
+      margin-right: auto;
+      margin-left: auto;
+    }
+    
+    .row {
+      margin-right: 0;
+      margin-left: 0;
+    }
+    
+    /* Mobile menu fixes */
+    @media (max-width: 991px) {
+      .navbar-collapse {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 1000;
+        background-color: white;
+        padding: 15px;
+        border-radius: 0 0 8px 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      }
+      
+      .navbar-nav {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-light">
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg fixed-top bg-white border-bottom">
+    <div class="container position-relative">
+      <a class="navbar-brand" href="#">
+        <img src="IMJ/brand.png" alt="Logo" style="width: 230px; height: 70px;">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarContent">
+        <ul class="navbar-nav ms-auto text-center">
+          <!-- Courses nav-item with hover banner -->
+          <li class="nav-item mx-2 position-relative">
+            <a class="nav-link" href="#">Courses</a>
+            <div class="course-banner bg-white p-4 rounded shadow">
+              <!-- Course 1 -->
+              <div class="d-flex align-items-start gap-3 mb-3 course-item">
+                <a href="IMJ/FED.html"
+                  class="d-flex align-items-center justify-content-center bg-danger text-white rounded-circle"
+                  style="width: 45px; height: 45px;">
+                  <i class="fas fa-code"></i>
+                </a>
+                <div class="text-start">
+                  <h6 class="text-uppercase fw-bold mb-1">Front-End Development</h6>
+                  <p class="mb-0 small text-muted">Harness the power of web development with coding</p>
+                </div>
+              </div>
+
+              <!-- Course 2 -->
+              <div class="d-flex align-items-start gap-3 mb-3 course-item">
+                <a href="IMJ/gdc.html"
+                  class="d-flex align-items-center justify-content-center bg-primary text-white rounded-circle"
+                  style="width: 45px; height: 45px;">
+                  <i class="fas fa-paint-brush"></i>
+                </a>
+                <div class="text-start">
+                  <h6 class="text-uppercase fw-bold mb-1">Graphic Design Course</h6>
+                  <p class="mb-0 small text-muted">Turn your inner creativity into a business</p>
+                </div>
+              </div>
+
+              <!-- Course 3 -->
+              <div class="d-flex align-items-start gap-3 mb-3 course-item">
+                <a href="IMJ/sm.html"
+                  class="d-flex align-items-center justify-content-center bg-warning text-white rounded-circle"
+                  style="width: 45px; height: 45px;">
+                  <i class="fas fa-bullhorn"></i>
+                </a>
+                <div class="text-start">
+                  <h6 class="text-uppercase fw-bold mb-1">Social Media Marketing</h6>
+                  <p class="mb-0 small text-muted">Learn to market business with smm</p>
+                </div>
+              </div>
+
+              <!-- Course 4 -->
+              <div class="d-flex align-items-start gap-3 course-item">
+                <a href="IMJ/seo.html"
+                  class="d-flex align-items-center justify-content-center bg-info text-white rounded-circle"
+                  style="width: 45px; height: 45px;">
+                  <i class="fas fa-chart-line"></i>
+                </a>
+                <div class="text-start">
+                  <h6 class="text-uppercase fw-bold mb-1">Search Engine Optimization</h6>
+                  <p class="mb-0 small text-muted">The Key to Opening Doors of opportunities</p>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <!-- Other nav links -->
+          <li class="nav-item mx-2"><a class="nav-link" href="#">Why Choose Us?</a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href="#">About Us</a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href="#">Course Fees</a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href="#">Internships</a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href="#">Blogs</a></li>
+          <li class="nav-item mx-2"><a class="nav-link" href="#">Contact Us</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- FIRST SECTION -->
+  <section class="hero-section d-flex align-items-center pt-5">
+    <div class="container py-5">
+      <div class="row align-items-center">
+        <div class="col-lg-6 text-center text-lg-start">
+          <h1 class="fw-bold hero-title">TAKE YOUR<br>CAREER TO THE<br>NEXT LEVEL</h1>
+          <h3 class="mt-4 text-dark">Aiming to become the best digital marketing<br>institute with an ethical business
+            approach</h3>
+          <h5 class="mt-4 text-primary"><i>Developing the next generation of talented<br>professionals</i></h5>
+          <div class="mt-4 hero-buttons">
+            <a href="tel:+1234567890" class="btn btn-danger px-5 py-3 fw-bold me-2 rounded-pill cta-button">
+              <i class="fas fa-phone-alt"></i> Call Now
+            </a>
+            <a href="#courses" class="btn px-5 py-3 fw-bold rounded-pill text-white cta-button"
+              style="background-color: #4285F4;">
+              Our Courses
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-6 mt-4 mt-lg-0 text-center fade-in-image">
+          <img src="IMJ/bbb.png" alt="Hero Image" class="img-fluid" style="max-height: 500px;">
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- SECOND SECTION -->
+  <div style="background-color: white;">
+    <section class="container">
+      <div class="row welcome-section">
+        <div class="col-3 d-none d-lg-block"></div>
+        <div class="col-12 col-lg-6 d-flex flex-column align-items-center text-center">
+          <h2 class="fw-bold display-5 mb-2 mt-5 " style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);">Welcome to
+            SofticEra</h2>
+          <div class="w-100" style="max-width: 300px; height: 3px; background-color: red; margin-top: 20px;"></div>
+        </div>
+
+        <div class="col-3 mt-5 d-none d-lg-block">
+          <img src="IMJ/transition.png" alt="Floating" class="img-fluid float-image"
+            style="max-width: 100px; margin-left: 200px;">
+        </div>
+      </div>
+      <section class="container my-5">
+        <div class="row">
+          <div class="col-3 d-none d-lg-block"></div>
+          <div class="col-12 col-lg-6 d-flex flex-column align-items-center text-center fw-bolder text-responsive"
+            style="color: dimgrey;">
+            <p>
+              We are one of Pakistan's fastest-growing digital marketing agencies and IT and Digital Marketing training
+              course providers. Whether you are looking for a developer to build your business website or you want to
+              become a web designer yourself, SofticEra is your number 1 choice. We have been building websites since
+              2012. Our team has built websites for local, national and international clients. Our trainers have decades
+              of experience in teaching the latest technology.</p>
+          </div>
+          <div class="col-3 mt-5 d-none d-lg-block"> </div>
+        </div>
+        <!-- THIRD SECTION -->
+        <section class="d-flex justify-content-center align-items-center py-5">
+          <div class="video-wrapper">
+            <iframe src="https://www.youtube.com/embed/meUirUitrwc?si=A8lZ5EhB0glG3lzW" title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+        </section>
+  </div>
+
+
+  <!-- CARDS -->
+  <div class="container py-5 px-lg-4">
+    <div class="row gx-5 gy-5 justify-content-center">
+
+      <!-- Card 1 -->
+      <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-4">
+        <div class="card border-0 h-100 p-4 course-card"
+          style="border-radius:12px; box-shadow: 0 8px 0px #ffc107, 0 2px 6px rgba(0,0,0,0.1), 2px 0 6px rgba(0,0,0,0.08), -2px 0 6px rgba(0,0,0,0.08);">
+          <img src="IMJ/firstcard.png" alt="Front-End Development" class="card-img-top"
+            style="width:100%; height: 220px; object-fit: contain;">
+          <div class="card-body d-flex justify-content-center align-items-center">
+            <h3 class="fw-bold  text-center m-0" style="color: #ffc107;">Front-End<br>Development</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-4">
+        <div class="card border-0 h-100 p-4 course-card"
+          style="border-radius:12px; box-shadow: 0 8px 0px purple, 0 2px 6px rgba(0,0,0,0.1), 2px 0 6px rgba(0,0,0,0.08), -2px 0 6px rgba(0,0,0,0.08);">
+          <img src="IMJ/second card.png" alt="Graphic Design" class="card-img-top"
+            style="width:100%; height: 220px; object-fit: contain;">
+          <div class="card-body d-flex justify-content-center align-items-center">
+            <h3 class="fw-bold text-center m-0" style="color:purple; ">Graphic Design</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-4">
+        <div class="card border-0 h-100 p-4 course-card"
+          style="border-radius:12px; box-shadow: 0 8px 0px #4285F4, 0 2px 6px rgba(0,0,0,0.1), 2px 0 6px rgba(0,0,0,0.08), -2px 0 6px rgba(0,0,0,0.08);">
+          <img src="IMJ/Third card.png" alt="Web Design" class="card-img-top"
+            style="width:100%; height: 220px; object-fit: contain;">
+          <div class="card-body d-flex justify-content-center align-items-center">
+            <h3 class="fw-bold text-center m-0" style="color:#4285F4; ">Web Design</h3>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="container py-5 px-lg-4">
+    <div class="row gx-5 gy-5 justify-content-center">
+
+      <!-- Card 1 -->
+      <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-4">
+        <div class="card border-0 h-100 p-4 course-card"
+          style="border-radius:12px; box-shadow: 0 8px 0px orangered, 0 2px 6px rgba(0,0,0,0.1), 2px 0 6px rgba(0,0,0,0.08), -2px 0 6px rgba(0,0,0,0.08);">
+          <img src="IMJ/SEO-Course.png" alt="Front-End Development" class="card-img-top"
+            style="width:100%; height: 220px; object-fit: contain;">
+          <div class="card-body d-flex justify-content-center align-items-center">
+            <h3 class="fw-bold  text-center m-0" style="color: orangered;">SEO</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-4">
+        <div class="card border-0 h-100 p-4 course-card"
+          style="border-radius:12px; box-shadow: 0 8px 0px #4285F4, 0 2px 6px rgba(0,0,0,0.1), 2px 0 6px rgba(0,0,0,0.08), -2px 0 6px rgba(0,0,0,0.08);">
+          <img src="IMJ/Social-Media-Marketing-Course.png" alt="Graphic Design" class="card-img-top"
+            style="width:100%; height: 220px; object-fit: contain;">
+          <div class="card-body d-flex justify-content-center align-items-center">
+            <h3 class="fw-bold text-center m-0" style="color:#4285F4; ;">Social Media Marketing</h3>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="col-12 col-sm-10 col-md-6 col-lg-5 col-xl-4">
+        <div class="card border-0 h-100 p-4 course-card"
+          style="border-radius:12px; box-shadow: 0 8px 0px red, 0 2px 6px rgba(0,0,0,0.1), 2px 0 6px rgba(0,0,0,0.08), -2px 0 6px rgba(0,0,0,0.08);">
+          <img src="IMJ/google-ads-web.png" alt="Web Design" class="card-img-top"
+            style="width:100%; height: 220px; object-fit: contain;">
+          <div class="card-body d-flex justify-content-center align-items-center">
+            <h3 class="fw-bold text-center m-0" style="color:red; ">Google Ads</h3>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- BUTTON -->
+  <div class="row">
+    <div class="col-4 d-none d-md-block"></div>
+    <div class="col-12 col-md-4 d-flex justify-content-center align-items-center"><button
+        class="btn  px-5 py-2 fs-5 mt-5" style="border-radius: 25px; background-color: #4285F4; color: white;">AND
+        MORE!VIEW ALL COURSES</button>
+    </div>
+    <div class="col-4 d-none d-md-block"></div>
+  </div>
+  <!-- FIFTH SECTION -->
+  <section class="mt-5"
+    style="min-height: 100vh; width: 100vw; margin-left: calc(-50vw + 50%); background: linear-gradient(to right, rgba(245, 230, 90, 0.5) 0%, rgba(82, 213, 125, 0.5) 25%, rgba(79, 107, 243, 0.4) 50%, rgba(236, 124, 165, 0.4) 75%, rgba(236, 124, 165, 0.5) 100%);">
+    <div class="container py-5">
+
+      <!-- Heading -->
+      <div class="row justify-content-center text-center">
+        <div class="col-lg-8">
+          <h2 class="fw-bold display-5 mb-2 mt-3" style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);">Prepare yourself
+            to be Employable</h2>
+          <div class="mx-auto my-3" style="max-width: 300px; height: 3px; background-color: red;"></div>
+        </div>
+      </div>
+
+      <!-- Paragraph -->
+      <div class="row justify-content-center text-center">
+        <div class="col-lg-10 col-md-10">
+          <p class="fw-bolder text-responsive" style="color: dimgrey;">
+            We're here to help you with those extra things that can make you stand out from the crowd for an employer.
+            Sign up for one of the courses and take your skills to a professional level. Industry professionals with
+            industry knowledge have designed all our courses. This is why, after signing up for the course, your
+            qualification is guaranteed to be recognised by companies in the digital design and marketing sector.
+          </p>
+        </div>
+      </div>
+
+      <!-- Grid Blocks -->
+      <div class="row justify-content-center text-center gy-5 mt-5">
+
+        <!-- Repeatable Block Start -->
+        <div class="col-6 col-md-4 col-lg-2 d-flex flex-column align-items-center gap-3 grid-block grid-block-responsive">
+          <img src="IMJ/D.png" alt="" style="width: 120px; height: 120px;">
+          <h4 class="fw-bold">COURSES</h4>
+          <div style="width: 3px; height: 80px; background-color: red;"></div>
+          <div class="bg-danger text-white rounded-circle d-flex justify-content-center align-items-center"
+            style="width: 40px; height: 40px;">
+            <h5 class="m-0">01</h5>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-2 d-flex flex-column align-items-center gap-3 grid-block grid-block-responsive">
+          <div class="bg-danger text-white rounded-circle d-flex justify-content-center align-items-center"
+            style="width: 40px; height: 40px;">
+            <h5 class="m-0">02</h5>
+          </div>
+          <div style="width: 3px; height: 80px; background-color: red;"></div>
+          <h4 class="fw-bold">INTERNSHIPS</h4>
+          <img src="IMJ/abd.png" alt="" style="width: 120px; height: 120px;">
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-2 d-flex flex-column align-items-center gap-3 grid-block grid-block-responsive">
+          <img src="IMJ/ABJ.png" alt="" style="width: 120px; height: 120px;">
+          <h4 class="fw-bold">JOBS</h4>
+          <div style="width: 3px; height: 100px; background-color: red;"></div>
+          <div class="bg-danger text-white rounded-circle d-flex justify-content-center align-items-center"
+            style="width: 40px; height: 40px;">
+            <h5 class="m-0">03</h5>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-2 d-flex flex-column align-items-center gap-3 grid-block grid-block-responsive">
+          <div class="bg-danger text-white rounded-circle d-flex justify-content-center align-items-center"
+            style="width: 40px; height: 40px;">
+            <h5 class="m-0">04</h5>
+          </div>
+          <div style="width: 3px; height: 100px; background-color: red;"></div>
+          <h4 class="fw-bold">PLANS</h4>
+          <img src="IMJ/ABP.png" alt="" style="width: 120px; height: 120px;">
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-2 d-flex flex-column align-items-center gap-3 grid-block grid-block-responsive">
+          <img src="IMJ/ABDD.png" alt="" style="width: 120px; height: 120px;">
+          <h4 class="fw-bold">DESIGN</h4>
+          <div style="width: 3px; height: 100px; background-color: red;"></div>
+          <div class="bg-danger text-white rounded-circle d-flex justify-content-center align-items-center"
+            style="width: 40px; height: 40px;">
+            <h5 class="m-0">05</h5>
+          </div>
+        </div>
+
+        <div class="col-6 col-md-4 col-lg-2 d-flex flex-column align-items-center gap-3 grid-block grid-block-responsive">
+          <div class="bg-danger text-white rounded-circle d-flex justify-content-center align-items-center"
+            style="width: 40px; height: 40px;">
+            <h5 class="m-0">06</h5>
+          </div>
+          <div style="width: 3px; height: 100px; background-color: red;"></div>
+          <h4 class="fw-bold">IMPLEMENT</h4>
+          <img src="IMJ/ABP.png" alt="" style="width: 120px; height: 120px;">
+        </div>
+        <!-- Repeatable Block End -->
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SECOND LAST SECTION -->
+
+  <section class="container-fluid px-0">
+    <div class="row gx-0">
+      <!-- Left Column -->
+      <div class="col-lg-6 py-5 left-column-content" style="background-color: white;">
+        <div class="ps-lg-5 ms-lg-5" style="max-width: 800px;">
+          <h2 class="fw-bolder display-5 mb-2 mt-5 text-lg-start text-center"
+            style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);">
+            Digital Marketing With Imagination
+          </h2>
+          <div class="my-3 mx-lg-0 mx-auto" style="max-width: 200px; height: 3px; background-color: red;"></div>
+          <p class="fs-5 text-secondary text-lg-start text-center px-3 px-lg-0 text-responsive">
+            We are SofticEra, a full-service digital marketing agency<br><br>based in Faisalabad, Pakistan.<br>We
+            strongly
+            believe that data doesn't have to be dry<br>and creativity can reap results. Our approach combines
+            these<br>two powerful forces and allows us to deliver imaginative<br>top-down digital strategies that
+            engage,
+            convert and, most<br>importantly, perform.<br><br>Whether you are looking for a digital marketing agency
+            for<br>designing a website for your business, rank your existing<br>website high on search engines, run
+            social
+            media ads to<br>generate new business or outperform all your competitor<br>by ranking your website on page
+            one
+            using Google ads,<br>you are at the right place. Here at SofticEra, we provide a<br>complete digital
+            marketing
+            solution. We design awesome-<br>looking, user-friendly websites using SEO techniques, and<br>we rank these
+            websites high on search engines. If you<br>would like to hire us as your digital marketing agency,<br>please
+            get in touch.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Column -->
+      <div class="col-lg-6 py-5 px-3 d-flex flex-column align-items-center right-column-content"
+        style="background-color: white;">
+        <!-- Each Service Box -->
+        <div class="service-box-responsive">
+          <img src="IMJ/Web-Design.png" style="width: 70px; height: 70px; margin-right: 15px;">
+          <span style="font-weight: bold; font-size: 23px;">Web Design</span>
+        </div>
+
+        <div class="service-box-responsive">
+          <img src="IMJ/Graphic-Design.png" style="width: 70px; height: 70px; margin-right: 15px;">
+          <span style="font-weight: bold; font-size: 23px;">Graphic Design</span>
+        </div>
+
+        <div class="service-box-responsive">
+          <img src="IMJ/SEO.png" style="width: 70px; height: 70px; margin-right: 15px;">
+          <span style="font-weight: bold; font-size: 23px;">Search Engine Optimisation</span>
+        </div>
+
+        <div class="service-box-responsive">
+          <img src="IMJ/Google-Ads.png" style="width: 70px; height: 70px; margin-right: 15px;">
+          <span style="font-weight: bold; font-size: 23px;">Google Ads</span>
+        </div>
+
+        <div class="service-box-responsive">
+          <img src="IMJ/Social-Media-Marketing-Course.png" style="width: 70px; height: 70px; margin-right: 15px;">
+          <span style="font-weight: bold; font-size: 23px;">Social Media Marketing</span>
+        </div>
+
+        <div class="service-box-responsive">
+          <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png"
+            style="width: 70px; height: 70px; margin-right: 15px;">
+          <span style="font-weight: bold; font-size: 23px;">Video Editing</span>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- LAST SECTION -->
+  <section class="footer-section py-5 text-white" style="background-color: #000;">
+    <div class="container">
+      <div class="row">
+        <!-- Logo + Description -->
+        <div class="col-md-4 mb-4">
+          <img src="IMJ/new sofrtt.png" alt="SofticEra Logo" style="max-width: 180px; margin-bottom: 20px;">
+          <p style="line-height: 1.8; font-size: 14px;">
+            We are a digital marketing agency & training courses provider. Whether you need to hire us for one of your
+            projects or are looking to become a web designer, graphic designer, or digital marketing expert, or want to
+            learn SEO and Social Media Marketing then you are at the right place.
+          </p>
+        </div>
+
+        <!-- Where to Find Us -->
+        <div class="col-md-4 mb-4">
+          <h5 class="fw-bold mb-3">Where to find us</h5>
+
+          <p style="font-size: 14px; line-height: 1.8;">
+            <i class="bi bi-geo-alt-fill"></i> 2nd Floor<br>
+            Nishat IT Tower<br>
+            Near GC University<br>
+            Jinnah Colony<br>
+            Faisalabad
+          </p>
+        </div>
+
+        <!-- Get in Touch -->
+        <div class="col-md-4 mb-4">
+          <h5 class="fw-bold mb-3">Get in touch</h5>
+
+          <p style="font-size: 14px;"><i class="bi bi-telephone-fill"></i> +92 304 0447 000</p>
+          <p style="font-size: 14px;"><i class="bi bi-whatsapp"></i> +44 7441 349 477</p>
+          <p style="font-size: 14px;"><i class="bi bi-envelope-fill"></i> info@softicera.com</p>
+          <div class="mt-3">
+            <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-5"></i></a>
+            <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-5"></i></a>
+            <a href="#" class="text-white me-3"><i class="bi bi-youtube fs-5"></i></a>
+            <a href="#" class="text-white"><i class="bi bi-linkedin fs-5"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <hr class="text-secondary">
+      <div class="text-center small mt-3" style="color: white;">
+        © Copyright 2025 | Designed and Maintained by SofticEra
+      </div>
+    </div>
+  </section>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>

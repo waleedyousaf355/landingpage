@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media Marketing Course | SofticEra</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            overflow-x: hidden;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .course-banner {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 450px;
+            z-index: 9999;
+        }
+
+        .nav-item:hover .course-banner {
+            display: block;
+        }
+
+        .course-item {
+            transition: transform 0.3s ease;
+        }
+
+        .course-item:hover {
+            transform: translateX(10px);
+        }
+
+        @media (max-width: 992px) {
+            .course-banner {
+                position: static;
+                transform: none;
+                width: 100%;
+                display: none;
+                margin-top: 10px;
+            }
+
+            .nav-item:hover .course-banner {
+                display: none;
+            }
+
+            .show-mobile-banner {
+                display: block !important;
+            }
+
+            .navbar-nav {
+                padding-top: 15px;
+            }
+        }
+
+        .fade-in-image {
+            opacity: 0;
+            animation: fadeIn 1s ease-in forwards;
+            animation-delay: 2s;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .float-image {
+            animation: floatUpDown 3s ease-in-out infinite;
+        }
+
+        @keyframes floatUpDown {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-30px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        .hero-section {
+            background: linear-gradient(to right,
+                    rgba(245, 230, 90, 0.3) 0%,
+                    rgba(82, 213, 125, 0.2) 25%,
+                    rgba(79, 107, 243, 0.2) 50%,
+                    rgba(236, 124, 165, 0.3) 75%,
+                    rgba(236, 124, 165, 0.3) 100%);
+            min-height: 100vh;
+            padding-top: 80px;
+        }
+
+        .hero-title {
+            font-size: 2rem;
+            line-height: 1.2;
+        }
+
+        @media (min-width: 768px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 992px) {
+            #img-div {
+                display: none;
+            }
+
+            .hero-section {
+                padding-top: 70px;
+            }
+
+            .hero-content {
+                padding-left: 15px !important;
+                padding-right: 15px !important;
+            }
+        }
+
+        .info-card {
+            color: white;
+            border-radius: 10px;
+            padding: 30px 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (min-width: 768px) {
+            .info-card {
+                padding: 50px 40px;
+                margin-bottom: 40px;
+            }
+        }
+
+        .card-red {
+            background-color: #f60000;
+        }
+
+        .card-blue {
+            background-color: #007bff;
+        }
+
+        .form-container {
+            background-color: #edf4ff;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+            height: 100%;
+        }
+
+        @media (min-width: 768px) {
+            .form-container {
+                padding: 30px;
+            }
+        }
+
+        .form-check-label {
+            margin-left: 5px;
+        }
+
+        #learn-wrapper {
+            background-color: #f9f9f9;
+            padding: 40px 0;
+        }
+
+        @media (min-width: 768px) {
+            #learn-wrapper {
+                padding: 60px 0;
+            }
+        }
+
+        #learn-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        #learn-title {
+            font-weight: 700;
+            text-shadow: 2px 2px 2px #aaa;
+            border-bottom: 3px solid red;
+            display: inline-block;
+            padding-bottom: 5px;
+            margin-bottom: 30px;
+            font-size: 1.8rem;
+        }
+
+        @media (min-width: 768px) {
+            #learn-title {
+                font-size: 2.2rem;
+                margin-bottom: 40px;
+            }
+        }
+
+        .learn-item {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .learn-icon {
+            color: red;
+            font-size: 1.2rem;
+            margin-right: 10px;
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .learn-col {
+                margin-bottom: 30px;
+            }
+        }
+
+        .second-hero {
+            background: linear-gradient(to right,
+                    rgba(245, 230, 90, 0.3) 0%,
+                    rgba(82, 213, 125, 0.2) 25%,
+                    rgba(79, 107, 243, 0.2) 50%,
+                    rgba(236, 124, 165, 0.3) 75%,
+                    rgba(236, 124, 165, 0.3) 100%);
+            padding: 60px 0;
+        }
+
+        @media (min-width: 768px) {
+            .second-hero {
+                padding: 80px 0;
+            }
+        }
+
+        #blue-section {
+            background: linear-gradient(to right,
+                    rgb(13, 13, 89) 0%,
+                    rgb(82, 82, 145) 25%,
+                    rgb(56, 56, 108) 50%,
+                    rgb(41, 41, 78),
+                    rgb(53, 53, 94));
+            width: 95%;
+            height: auto;
+            padding: 20px;
+            margin: 30px auto;
+            border-left: 5px solid red;
+        }
+
+        @media (min-width: 768px) {
+            #blue-section {
+                width: 90%;
+                height: 170px;
+                padding: 0;
+                border-left: 10px solid red;
+            }
+        }
+
+        .custom-box {
+            height: 70px;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: white;
+            margin-bottom: 15px;
+        }
+
+        .custom-box.expanded {
+            height: auto;
+            min-height: 150px;
+        }
+
+        .main-text {
+            color: rgb(66, 65, 65);
+            transition: color 0.4s;
+            font-size: 0.95rem;
+        }
+
+        @media (min-width: 768px) {
+            .main-text {
+                font-size: 1rem;
+            }
+        }
+
+        .main-text.red {
+            color: red;
+        }
+
+        .extra-content {
+            display: none;
+            margin-top: 10px;
+            font-size: 0.9rem;
+        }
+
+        .custom-box.expanded .extra-content {
+            display: block;
+        }
+
+        .icon-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            padding: 0;
+            font-size: 18px;
+            text-align: center;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+
+        .course-content-section {
+            padding: 40px 0;
+            background: linear-gradient(to right, #f8d7e0, #cce5ff, #d4f4dd, #fff3cd);
+        }
+
+        @media (min-width: 768px) {
+            .course-content-section {
+                padding: 60px 0;
+            }
+        }
+
+        .course-content-title {
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (min-width: 768px) {
+            .course-content-title {
+                font-size: 2.5rem;
+                margin-bottom: 30px;
+            }
+        }
+
+        .course-content-divider {
+            width: 200px;
+            height: 3px;
+            background-color: red;
+            margin: 0 auto 30px;
+        }
+
+        @media (min-width: 768px) {
+            .course-content-divider {
+                margin-bottom: 40px;
+            }
+        }
+
+        .course-content-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .course-content-item {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            font-size: 0.95rem;
+        }
+
+        @media (min-width: 768px) {
+            .course-content-item {
+                font-size: 1rem;
+            }
+        }
+
+        .course-content-icon {
+            color: red;
+            margin-right: 10px;
+            font-size: 1rem;
+        }
+
+        .pre-signup-section {
+            padding: 40px 0;
+        }
+
+        @media (min-width: 768px) {
+            .pre-signup-section {
+                padding: 60px 0;
+            }
+        }
+
+        .pre-signup-title {
+            font-size: 1.8rem;
+            color: rgb(28, 27, 27);
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.3;
+        }
+
+        @media (min-width: 768px) {
+            .pre-signup-title {
+                font-size: 2.5rem;
+                margin-bottom: 25px;
+            }
+        }
+
+        .pre-signup-divider {
+            width: 200px;
+            height: 2px;
+            background-color: red;
+            margin-bottom: 20px;
+        }
+
+        .pre-signup-text {
+            font-size: 1rem;
+            color: #575757;
+            font-weight: 500;
+            line-height: 1.6;
+        }
+
+        .footer-section {
+            padding: 40px 0;
+            background-color: #000;
+        }
+
+        @media (min-width: 768px) {
+            .footer-section {
+                padding: 60px 0;
+            }
+        }
+
+        .footer-logo {
+            max-width: 180px;
+            margin-bottom: 20px;
+        }
+
+        .footer-description {
+            line-height: 1.8;
+            font-size: 0.9rem;
+            color: #ddd;
+        }
+
+        .footer-heading {
+            font-weight: 600;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .footer-divider {
+            width: 60px;
+            border: 1px solid white;
+            margin: 0 0 15px 0;
+        }
+
+        .footer-contact-item {
+            font-size: 0.9rem;
+            line-height: 1.8;
+            margin-bottom: 8px;
+        }
+
+        .footer-social-icon {
+            font-size: 1.2rem;
+            margin-right: 15px;
+            color: white;
+            transition: color 0.3s;
+        }
+
+        .footer-social-icon:hover {
+            color: #007bff;
+        }
+
+        .footer-copyright {
+            font-size: 0.8rem;
+            color: #aaa;
+        }
+
+        .faq-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: black;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        @media (min-width: 768px) {
+            .faq-title {
+                font-size: 2.2rem;
+                margin-bottom: 30px;
+            }
+        }
+
+        .faq-divider {
+            height: 2px;
+            width: 150px;
+            background-color: red;
+            margin: 0 auto 30px;
+        }
+
+        @media (min-width: 768px) {
+            .faq-divider {
+                width: 250px;
+                margin-bottom: 40px;
+            }
+        }
+
+        .navbar-brand img {
+            width: 180px;
+            height: auto;
+            max-height: 60px;
+        }
+
+        @media (min-width: 768px) {
+            .navbar-brand img {
+                width: 230px;
+                max-height: 70px;
+            }
+        }
+
+        /* Mobile menu adjustments */
+        @media (max-width: 992px) {
+            .navbar-collapse {
+                background-color: white;
+                padding: 15px;
+                border-radius: 5px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+                margin-top: 10px;
+            }
+
+            .nav-item {
+                margin-bottom: 8px;
+            }
+
+            .nav-link {
+                padding: 8px 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top bg-white border-bottom">
+        <div class="container position-relative">
+            <a class="navbar-brand" href="#">
+                <img src="brand.png" alt="SofticEra Logo" class="img-fluid">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent"
+                aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <ul class="navbar-nav ms-auto text-center">
+                    <!-- Courses nav-item with hover banner -->
+                    <li class="nav-item mx-2 position-relative">
+                        <a class="nav-link" href="#" id="coursesLink">Courses</a>
+                        <div class="course-banner bg-white p-4 rounded shadow">
+                            <!-- Course 1 -->
+                            <div class="d-flex align-items-start gap-3 mb-3 course-item">
+                                <a href="FED.html"
+                                    class="d-flex align-items-center justify-content-center bg-danger text-white rounded-circle"
+                                    style="width: 45px; height: 45px;">
+                                    <i class="fas fa-code"></i>
+                                </a>
+                                <div class="text-start">
+                                    <h6 class="text-uppercase fw-bold mb-1">Front-End Development</h6>
+                                    <p class="mb-0 small text-muted">Harness the power of web development with coding
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Course 2 -->
+                            <div class="d-flex align-items-start gap-3 mb-3 course-item">
+                                <a href="gdc.html"
+                                    class="d-flex align-items-center justify-content-center bg-primary text-white rounded-circle"
+                                    style="width: 45px; height: 45px;">
+                                    <i class="fas fa-paint-brush"></i>
+                                </a>
+                                <div class="text-start">
+                                    <h6 class="text-uppercase fw-bold mb-1">Graphic Design Course</h6>
+                                    <p class="mb-0 small text-muted">Turn your inner creativity into a business</p>
+                                </div>
+                            </div>
+
+                            <!-- Course 3 -->
+                            <div class="d-flex align-items-start gap-3 mb-3 course-item">
+                                <a href="sm.html"
+                                    class="d-flex align-items-center justify-content-center bg-warning text-white rounded-circle"
+                                    style="width: 45px; height: 45px;">
+                                    <i class="fas fa-bullhorn"></i>
+                                </a>
+                                <div class="text-start">
+                                    <h6 class="text-uppercase fw-bold mb-1">Social Media Marketing</h6>
+                                    <p class="mb-0 small text-muted">Learn to market business with smm</p>
+                                </div>
+                            </div>
+
+                            <!-- Course 4 -->
+                            <div class="d-flex align-items-start gap-3 course-item">
+                                <a href="seo.html"
+                                    class="d-flex align-items-center justify-content-center bg-info text-white rounded-circle"
+                                    style="width: 45px; height: 45px;">
+                                    <i class="fas fa-chart-line"></i>
+                                </a>
+                                <div class="text-start">
+                                    <h6 class="text-uppercase fw-bold mb-1">Search Engine Optimization</h6>
+                                    <p class="mb-0 small text-muted">The Key to Opening Doors of opportunities</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+
+                    <!-- Other nav links -->
+                    <li class="nav-item mx-2"><a class="nav-link" href="#">Why Choose Us?</a></li>
+                    <li class="nav-item mx-2"><a class="nav-link" href="#">About Us</a></li>
+                    <li class="nav-item mx-2"><a class="nav-link" href="#">Course Fees</a></li>
+                    <li class="nav-item mx-2"><a class="nav-link" href="#">Internships</a></li>
+                    <li class="nav-item mx-2"><a class="nav-link" href="#">Blogs</a></li>
+                    <li class="nav-item mx-2"><a class="nav-link" href="#">Contact Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section d-flex align-items-center">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6 text-center text-lg-start hero-content" style="padding-left: 30px;">
+                    <h1 class="hero-title fw-bold mb-4">Social Media Marketing Course</h1>
+
+                    <h5 class="mt-4 text-secondary">Master Social Media Marketing, Become an Irreplaceable Social Media
+                        Manager & Grow Your Successful Social Media Business. Learn over 10 social media channels.
+                    </h5>
+                    <div class="container mt-5">
+                        <div class="d-flex align-items-center justify-content-center justify-content-lg-start mb-3">
+                            <i class="fab fa-whatsapp fa-2x text-success me-2 fs-3"></i>
+                            <span class="fs-4 fw-bold">+92 300 1234567</span>
+                        </div>
+                        <div class="d-flex align-items-center justify-content-center justify-content-lg-start">
+                            <i class="fab fa-whatsapp fa-2x text-success me-2 fs-3"></i>
+                            <span class="fs-4 fw-bold">+92 300 1234567</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-5 mt-lg-0 text-center fade-in-image" id="img-div">
+                    <img src="sm.png" alt="Social Media Marketing Course" class="img-fluid float-image"
+                        style="max-height: 400px;">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="container py-5">
+        <div class="row justify-content-center align-items-start g-4">
+            <div class="col-lg-5 col-md-8">
+                <div class="info-card card-red d-flex align-items-center">
+                    <i class="bi bi-person-video3 me-3" style="font-size: 50px;"></i>
+                    <div>
+                        <h2 class="fw-bold mb-1" style="font-size: 1.5rem;">Methods of Learning</h2>
+                        <p class="mb-0 fs-5">Classroom | Online</p>
+                    </div>
+                </div>
+
+                <div class="info-card card-blue d-flex align-items-center">
+                    <i class="bi bi-calendar-event me-3" style="font-size: 50px;"></i>
+                    <div>
+                        <h2 class="fw-bold mb-1" style="font-size: 1.5rem;">Course Duration</h2>
+                        <p class="mb-0 fs-5">8 Weeks</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Enrolment Form -->
+            <div class="col-lg-5 col-md-8">
+                <div class="form-container">
+                    <h4 class="text-center fw-bold mb-4">Enrolment Form</h4>
+                    <form>
+                        <div class="mb-3">
+                            <label class="form-label">Full Name <span class="text-danger">(Required)</span></label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email <span class="text-danger">(Required)</span></label>
+                            <input type="email" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Contact No. <span class="text-danger">(Required)</span></label>
+                            <input type="text" class="form-control" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Preferred Learning Method <span
+                                    class="text-danger">(Required)</span></label><br>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="method" id="classroom"
+                                    value="classroom" required>
+                                <label class="form-check-label" for="classroom">Classroom</label>
+                            </div>
+                            <div class="form-check form-check-inline mt-2 mt-md-0">
+                                <input class="form-check-input" type="radio" name="method" id="online" value="online"
+                                    required>
+                                <label class="form-check-label" for="online">Online</label>
+                            </div>
+                        </div>
+
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-danger mt-3 mt-md-5 py-2">Submit</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- learning section -->
+    <div id="learn-wrapper">
+        <div id="learn-content">
+            <h1 id="learn-title" class="text-center">What you'll learn</h1>
+            <div class="row">
+                <div class="col-md-6 learn-col">
+                    <div class="learn-item"><span class="learn-icon">✔</span>Understand your purpose within your career
+                        as a social media marketing professional</div>
+                    <div class="learn-item"><span class="learn-icon">✔</span>Create compelling content for social media
+                        platforms</div>
+                    <div class="learn-item"><span class="learn-icon">✔</span>Understand the use of social media for
+                        business rather than personal use</div>
+                </div>
+                <div class="col-md-6 learn-col">
+                    <div class="learn-item"><span class="learn-icon">✔</span>Create an extensive and customised
+                        social media strategy, specific to individual client needs</div>
+                    <div class="learn-item"><span class="learn-icon">✔</span>Understand how to analyse your
+                        performance and make adjustments to your strategy</div>
+                    <div class="learn-item"><span class="learn-icon">✔</span>How to go from being a complete
+                        beginner in the world of social media to a pro-social media manager, ready to take on any
+                        client!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- content-section -->
+    <section class="course-content-section">
+        <div class="container">
+            <h2 class="course-content-title">Social Media Marketing Course Content</h2>
+            <div class="course-content-divider"></div>
+
+            <div class="row justify-content-center text-start">
+                <div class="col-md-6 col-sm-12">
+                    <ul class="course-content-list">
+                        <li class="course-content-item"><i class="fas fa-check course-content-icon"></i>Introduction to
+                            Social Media</li>
+                        <li class="course-content-item"><i class="fas fa-check course-content-icon"></i>Market Research
+                            & Competitor Analysis</li>
+                        <li class="course-content-item"><i class="fas fa-check course-content-icon"></i>Creating a
+                            strategy according to the client's needs</li>
+                        <li class="course-content-item"><i class="fas fa-check course-content-icon"></i>Branding &
+                            Design (Working with Graphic Designer)</li>
+                        <li class="course-content-item"><i class="fas fa-check course-content-icon"></i>Content
+                            Marketing</li>
+                        <li class="course-content-item"><i class="fas fa-check course-content-icon"></i>Video Marketing
+                        </li>
+                        <li class="course-content-item"><i class="fas fa-check course-content-icon"></i>Trends</li>
+                        <li class="course-content-item"><i class="fas fa-check course-content-icon"></i>Current Events
+                        </li>
+                        <li class="course-content-item"><i class="fas fa-check course-content-icon"></i>Sales Psychology
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 col-sm-12">
+                    <ul class="course-content-list">
+                        <li class="course-content-item"><i class="fas fa-check course-content-icon"></i>Emotional
+                            Intelligence</li>
+                        <li class="course-content-item"><i class="fas fa-check course-content-icon"></i>Customer Service
+                        </li>
+                        <li class="course-content-item"><i class="fas fa-check course-content-icon"></i>Social Media
+                            Paid Ads</li>
+                        <li class="course-content-item"><i class="fas fa-check course-content-icon"></i>Know your
+                            client's business</li>
+                        <li class="course-content-item"><i class="fas fa-check course-content-icon"></i>Know your
+                            client's audience (potential customers)</li>
+                        <li class="course-content-item"><i class="fas fa-check course-content-icon"></i>Know your
+                            client's area of service</li>
+                        <li class="course-content-item"><i class="fas fa-check course-content-icon"></i>Analytics (Track
+                            Performance)</li>
+                        <li class="course-content-item"><i class="fas fa-check course-content-icon"></i>Working with
+                            Influencers</li>
+                        <li class="course-content-item"><i class="fas fa-check course-content-icon"></i>And much more!
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="container-fluid py-4" style="background-color: white;">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10 d-flex align-items-center justify-content-center rounded-end"
+                id="blue-section">
+                <p class="fs-5 text-center m-0 py-3 py-lg-0 px-3 text-white">
+                    Our Social Media Marketing Course experts will support you even after you've completed the course,
+                    so don't worry even if you get stuck on something 'the support' is just one phone call or WhatsApp
+                    message away.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <section class="container-fluid pb-5" style="background-color: white;">
+        <div class="row">
+            <div class="col-12 text-center mt-5">
+                <h1 class="faq-title">FAQ for Social Media Marketing Course</h1>
+                <div class="faq-divider"></div>
+            </div>
+        </div>
+
+        <div class="container">
+            <div class="row justify-content-center g-3">
+                <!-- #1 -->
+                <div class="col-12 col-md-10">
+                    <div class="custom-box px-4 py-3 d-flex flex-column justify-content-start" id="box1">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="main-text fw-bold" id="text1">Is this Social Media Marketing Course for me?
+                            </div>
+                            <button class="btn btn-danger btn-sm icon-btn" onclick="toggleBox(1)">+</button>
+                        </div>
+                        <div class="extra-content" id="content1">
+                            <p class="mt-2 mb-0">Anyone can learn Social Media Marketing. No prior skills in design,
+                                programming or coding are required for this course. If you like to use social media and
+                                know what type of audience is on each social network, then our social media marketing
+                                course is just the right course for you.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- #2 -->
+                <div class="col-12 col-md-10">
+                    <div class="custom-box px-4 py-3 d-flex flex-column justify-content-start" id="box2">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="main-text fw-bold" id="text2">What is the teaching style of Social Media
+                                Marketing Course instructors at SofticEra?</div>
+                            <button class="btn btn-danger btn-sm icon-btn" onclick="toggleBox(2)">+</button>
+                        </div>
+                        <div class="extra-content" id="content2">
+                            <p class="mt-2 mb-0">We take student care very seriously. This is why all our courses are
+                                delivered by young professionals who are in the market and know what is trending and
+                                what is required to get a job in the current market. Our instructors will be with you
+                                throughout your Social Media Marketing learning journey. They will guide you if you get
+                                stuck and help you become one of the best Social Media Marketers.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- #3 -->
+                <div class="col-12 col-md-10">
+                    <div class="custom-box px-4 py-3 d-flex flex-column justify-content-start" id="box3">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="main-text fw-bold" id="text3">What skills do I need to start learning Social
+                                Media Marketing?</div>
+                            <button class="btn btn-danger btn-sm icon-btn" onclick="toggleBox(3)">+</button>
+                        </div>
+                        <div class="extra-content" id="content3">
+                            <p class="mt-2 mb-0">All you need is a basic understanding of business and how the Internet
+                                works. As long as you are a quick learner and are comfortable with using computers,
+                                researching on the internet, and have the know-how of social media platforms then this
+                                course is perfect for you.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- #4 -->
+                <div class="col-12 col-md-10">
+                    <div class="custom-box px-4 py-3 d-flex flex-column justify-content-start" id="box4">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="main-text fw-bold" id="text4">What opportunities are available to me after
+                                completing the Social Media Marketing Course at SofticEra?</div>
+                            <button class="btn btn-danger btn-sm icon-btn" onclick="toggleBox(4)">+</button>
+                        </div>
+                        <div class="extra-content" id="content4">
+                            <p class="mt-2 mb-0">You can work as a freelancer and become your boss. You can work for
+                                some of the big names in digital marketing. If you demonstrate your dedication and
+                                interest throughout the Social Media Marketing Course, you will be given an internship
+                                at SofticEra and thereafter a job (subject to your skill level and availability)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- #5 -->
+                <div class="col-12 col-md-10">
+                    <div class="custom-box px-4 py-3 d-flex flex-column justify-content-start" id="box5">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="main-text fw-bold" id="text5">How comprehensive is the Social Media Marketing
+                                Course in terms of platform coverage?</div>
+                            <button class="btn btn-danger btn-sm icon-btn" onclick="toggleBox(5)">+</button>
+                        </div>
+                        <div class="extra-content" id="content5">
+                            <p class="mt-2 mb-0">Our course covers all major social media platforms including Facebook,
+                                Instagram, Twitter, LinkedIn, Pinterest, YouTube, and TikTok. You'll learn
+                                platform-specific strategies, content creation techniques, and advertising methods for
+                                each network.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- #6 -->
+                <div class="col-12 col-md-10">
+                    <div class="custom-box px-4 py-3 d-flex flex-column justify-content-start" id="box6">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="main-text fw-bold" id="text6">Does the Social Media Marketing Course include
+                                practical, hands-on projects?</div>
+                            <button class="btn btn-danger btn-sm icon-btn" onclick="toggleBox(6)">+</button>
+                        </div>
+                        <div class="extra-content" id="content6">
+                            <p class="mt-2 mb-0">Yes! Throughout the course, you'll work on real-world projects
+                                including creating social media strategies, designing content calendars, running ad
+                                campaigns, and analyzing performance metrics. You'll graduate with a portfolio of work
+                                to show potential clients or employers.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pre-signup-section bg-light">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-12 col-lg-10">
+                    <h1 class="pre-signup-title text-center text-lg-start">
+                        Before Signing up for the Social Media Marketing Course
+                    </h1>
+                    <div class="pre-signup-divider"></div>
+                    <p class="pre-signup-text">
+                        Decision-making is a crucial process in all walks of life, but it becomes even more significant
+                        when it concerns your future. This is why it's essential to approach decisions with caution,
+                        considering all the pros and cons. At SofticEra, we aim to provide a professional training
+                        environment to the youth in Pakistan, especially in Faisalabad, so they can emerge as future
+                        tech leaders. Whether you opt for our Front-End Web Development Course, Backend Web Development
+                        Course, Web Design Course, Graphic Design Course, Google Ads Course, Social Media Marketing
+                        Course, Content Marketing Course, Digital Marketing Strategy Course, Video Editing Course,
+                        Spoken English Course, Email Marketing Course, IT Skills Course, or aim to become an Excel
+                        wizard through our Excel course, you are guaranteed to receive the best industry training. We
+                        take pride in being the best Institute in Faisalabad, a title we have earned by producing talent
+                        for the local, national, and international job markets.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <section class="footer-section">
+        <div class="container">
+            <div class="row">
+                <!-- Logo + Description -->
+                <div class="col-md-4 mb-4 mb-md-0">
+                    <img src="new sofrtt.png" alt="SofticEra Logo" class="footer-logo img-fluid">
+                    <p class="footer-description">
+                        We are a digital marketing agency & training courses provider. Whether you need to hire us
+                        for one of your projects or are looking to become a web designer, graphic designer, or digital
+                        marketing expert, or want to learn SEO and Social Media Marketing then you are at the right
+                        place.
+                    </p>
+                </div>
+
+                <!-- Where to Find Us -->
+                <div class="col-md-4 mb-4 mb-md-0 text-white">
+                    <h5 class="footer-heading">Where to find us</h5>
+                    <hr class="footer-divider">
+                    <p class="footer-contact-item">
+                        <i class="bi bi-geo-alt-fill me-2"></i> 2nd Floor<br>
+                        <span style="padding-left: 24px;">Nishat IT Tower</span><br>
+                        <span style="padding-left: 24px;">Near GC University</span><br>
+                        <span style="padding-left: 24px;">Jinnah Colony</span><br>
+                        <span style="padding-left: 24px;">Faisalabad</span>
+                    </p>
+                </div>
+
+                <!-- Get in Touch -->
+                <div class="col-md-4 text-white">
+                    <h5 class="footer-heading">Get in touch</h5>
+                    <hr class="footer-divider">
+                    <p class="footer-contact-item"><i class="bi bi-telephone-fill me-2"></i> +92 304 0447 000</p>
+                    <p class="footer-contact-item"><i class="bi bi-whatsapp me-2"></i> +44 7441 349 477</p>
+                    <p class="footer-contact-item"><i class="bi bi-envelope-fill me-2"></i> info@softicera.com</p>
+                    <div class="mt-4">
+                        <a href="#" class="footer-social-icon"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="footer-social-icon"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="footer-social-icon"><i class="bi bi-youtube"></i></a>
+                        <a href="#" class="footer-social-icon"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="text-white mt-4">
+            <div class="text-center footer-copyright mt-3">
+                © Copyright 2025 | Designed and Maintained by SofticEra
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function toggleBox(id) {
+            const box = document.getElementById('box' + id);
+            const text = document.getElementById('text' + id);
+            const content = document.getElementById('content' + id);
+            const button = box.querySelector('.icon-btn');
+
+            box.classList.toggle('expanded');
+            text.classList.toggle('red');
+
+            if (box.classList.contains('expanded')) {
+                button.textContent = '−';
+            } else {
+                button.textContent = '+';
+            }
+        }
+
+        // Mobile course banner toggle
+        document.addEventListener('DOMContentLoaded', function () {
+            const coursesLink = document.getElementById('coursesLink');
+            const courseBanner = document.querySelector('.course-banner');
+
+            if (window.innerWidth <= 992) {
+                coursesLink.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    courseBanner.classList.toggle('show-mobile-banner');
+                });
+            }
+        });
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
